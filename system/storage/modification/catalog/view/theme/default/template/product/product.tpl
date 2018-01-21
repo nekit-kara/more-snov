@@ -500,9 +500,9 @@ main_price_start = calculate_tax(<?php echo $price_value; ?>);
 main_step = 0;
 main_timeout_id = 0;
 
-function animateMainPrice_callback() {
+function animateMainPrice_callback(product) {
+
     main_price_start += main_step;
-    
     if ((main_step > 0) && (main_price_start > main_price_final)){
         main_price_start = main_price_final;
     } else if ((main_step < 0) && (main_price_start < main_price_final)) {
@@ -510,21 +510,27 @@ function animateMainPrice_callback() {
     } else if (main_step == 0) {
         main_price_start = main_price_final;
     }
+    if(product) {
+      main_price_start = parseFloat($(product.target).find('option:selected').attr('data-price')) + parseFloat($(product.target).find('option:first').attr('data-price'));
+      var autoCalc = $(product.target).closest('.b-product-custom').find('.autocalc-product-price');
+      autoCalc.html(price_format(main_price_start));
+    } else {
+      //$container.find('.autocalc-product-price').html( price_format(main_price_start) );
+    }
     
-    $container.find('.autocalc-product-price').html( price_format(main_price_start) );
     
     if (main_price_start != main_price_final) {
         main_timeout_id = setTimeout(animateMainPrice_callback, animate_delay);
     }
 }
 
-function animateMainPrice(price) {
+function animateMainPrice(price, product) {
     main_price_start = main_price_final;
     main_price_final = price;
     main_step = (main_price_final - main_price_start) / 10;
     
     clearTimeout(main_timeout_id);
-    main_timeout_id = setTimeout(animateMainPrice_callback, animate_delay);
+    main_timeout_id = setTimeout(animateMainPrice_callback(product), animate_delay);
 }
 
 
@@ -563,7 +569,7 @@ function animateSpecialPrice(price) {
 <?php } ?>
 
 
-function recalculateprice()
+function recalculateprice(product)
 {
     var main_price = <?php echo (float)$price_value; ?>;
     var input_quantity = Number($container.find('input[name="quantity"]').val());
@@ -664,7 +670,7 @@ function recalculateprice()
     <?php } ?>
 
     // Display Main Price
-    animateMainPrice(main_price);
+    animateMainPrice(main_price, product);
       
     <?php if ($special) { ?>
       animateSpecialPrice(special);
@@ -673,7 +679,7 @@ function recalculateprice()
 
 $container.find('input[type="checkbox"]').on('change', function() { recalculateprice(); });
 $container.find('input[type="radio"]').on('change', function() { recalculateprice(); });
-$container.find('select').on('change', function() { recalculateprice(); });
+$container.find('select').on('change', function(e) { recalculateprice(e); });
 
 (function($quantity){
 $quantity.data('val', $quantity.val());
@@ -697,7 +703,7 @@ $container.find('input[type="radio"][name^="option"]').each(function(){
 
 recalculateprice();
 
-})($('#quick_order').length ? $('#quick_order') : $('#product'));
+})($('#quick_order').length ? $('#quick_order') : $('.b-product-custom'));
 });
 
 //--></script>
@@ -887,10 +893,6 @@ recalculateprice();
                 <?php } ?>
               </div>
               <?php } ?>
-
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
-			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
-			
               <?php if ($product['price']) { ?>
               <p class="price">
                 <?php if (!$product['special']) { ?>

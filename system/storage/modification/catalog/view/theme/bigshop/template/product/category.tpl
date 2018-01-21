@@ -15,16 +15,6 @@
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
-      <?php if ($description) { ?>
-      <div class="row">
-        <!--<?php if ($thumb) { ?>
-        <div class="col-sm-2"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
-        <?php } ?>-->
-        <?php if ($description) { ?>
-        <div class="col-sm-12"><?php echo $description; ?></div>
-        <?php } ?>
-      </div>
-      <?php } ?>
       <?php if($bigshop_refine_categories == 1) { ?>
       <?php if ($categories) { ?>
       <h3><?php echo $text_refine; ?></h3>
@@ -300,51 +290,344 @@ $( window ).resize(function() {
       <div class="row products-category">
         <?php foreach ($products as $product) { ?>
         <div class="product-layout product-list col-xs-12">
-          <div class="product-thumb">
-            <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
+          <div class="product-thumb b-product-custom" data-id="<?=$product['product_id']?>">
+            <div class="image b-product-custom__image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
             <div>
-              <div class="caption">
-                <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
-                <p class="description"><?php echo $product['description']; ?></p>
+                <div class="caption b-product-custom__caption">
+                  <h4 class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+                  <div class="b-product-custom__params">
 
 			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
+                      <?php $params_block; ?>
+                  </div>
+                </div><!--/.b-product-custom__caption-->
+                <?php $options = $product['options'] ?>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+(function($container){
+function price_format(price)
+{ 
+    c = <?php echo (empty($autocalc_currency['decimals']) ? "0" : $autocalc_currency['decimals'] ); ?>;
+    d = '<?php echo $autocalc_currency['decimal_point']; ?>'; // decimal separator
+    t = '<?php echo $autocalc_currency['thousand_point']; ?>'; // thousands separator
+    s_left = '<?php echo str_replace("'", "\'", $autocalc_currency['symbol_left']); ?>';
+    s_right = '<?php echo str_replace("'", "\'", $autocalc_currency['symbol_right']); ?>';
+    n = price * <?php echo $autocalc_currency['value']; ?>;
+    i = parseInt(n = Math.abs(n).toFixed(c)) + ''; 
+    j = ((j = i.length) > 3) ? j % 3 : 0; 
+    price_text = s_left + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '') + s_right; 
+    
+    <?php if (!empty($autocalc_currency2)) { ?>
+    c = <?php echo (empty($autocalc_currency2['decimals']) ? "0" : $autocalc_currency2['decimals'] ); ?>;
+    d = '<?php echo $autocalc_currency2['decimal_point']; ?>'; // decimal separator
+    t = '<?php echo $autocalc_currency2['thousand_point']; ?>'; // thousands separator
+    s_left = '<?php echo str_replace("'", "\'", $autocalc_currency2['symbol_left']); ?>';
+    s_right = '<?php echo str_replace("'", "\'", $autocalc_currency2['symbol_right']); ?>';
+    n = price * <?php echo $autocalc_currency2['value']; ?>;
+    i = parseInt(n = Math.abs(n).toFixed(c)) + ''; 
+    j = ((j = i.length) > 3) ? j % 3 : 0; 
+    price_text += '  <span class="currency2">(' + s_left + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '') + s_right + ')</span>'; 
+    <?php } ?>
+    
+    return price_text;
+}
+
+function calculate_tax(price)
+{
+    <?php // Process Tax Rates
+      if (isset($tax_rates) && !empty($tax)) {
+         foreach ($tax_rates as $tax_rate) {
+           if ($tax_rate['type'] == 'F') {
+             echo 'price += '.$tax_rate['rate'].';';
+           } elseif ($tax_rate['type'] == 'P') {
+             echo 'price += (price * '.$tax_rate['rate'].') / 100.0;';
+           }
+         }
+      }
+    ?>
+    return price;
+}
+
+function process_discounts(price, quantity)
+{
+    <?php
+      foreach ($dicounts_unf as $discount) {
+        echo 'if ((quantity >= '.$discount['quantity'].') && ('.$discount['price'].' < price)) price = '.$discount['price'].';'."\n";
+      }
+    ?>
+    return price;
+}
+
+
+animate_delay = 20;
+
+main_price_final = calculate_tax(<?php echo $price_value; ?>);
+main_price_start = calculate_tax(<?php echo $price_value; ?>);
+main_step = 0;
+main_timeout_id = 0;
+
+function animateMainPrice_callback(product) {
+
+    main_price_start += main_step;
+    if ((main_step > 0) && (main_price_start > main_price_final)){
+        main_price_start = main_price_final;
+    } else if ((main_step < 0) && (main_price_start < main_price_final)) {
+        main_price_start = main_price_final;
+    } else if (main_step == 0) {
+        main_price_start = main_price_final;
+    }
+    if(product) {
+      main_price_start = parseFloat($(product.target).find('option:selected').attr('data-price')) + parseFloat($(product.target).find('option:first').attr('data-price'));
+      var autoCalc = $(product.target).closest('.b-product-custom').find('.autocalc-product-price');
+      autoCalc.html(price_format(main_price_start));
+    } else {
+      //$container.find('.autocalc-product-price').html( price_format(main_price_start) );
+    }
+    
+    
+    if (main_price_start != main_price_final) {
+        main_timeout_id = setTimeout(animateMainPrice_callback, animate_delay);
+    }
+}
+
+function animateMainPrice(price, product) {
+    main_price_start = main_price_final;
+    main_price_final = price;
+    main_step = (main_price_final - main_price_start) / 10;
+    
+    clearTimeout(main_timeout_id);
+    main_timeout_id = setTimeout(animateMainPrice_callback(product), animate_delay);
+}
+
+
+<?php if ($special) { ?>
+special_price_final = calculate_tax(<?php echo $special_value; ?>);
+special_price_start = calculate_tax(<?php echo $special_value; ?>);
+special_step = 0;
+special_timeout_id = 0;
+
+function animateSpecialPrice_callback() {
+    special_price_start += special_step;
+    
+    if ((special_step > 0) && (special_price_start > special_price_final)){
+        special_price_start = special_price_final;
+    } else if ((special_step < 0) && (special_price_start < special_price_final)) {
+        special_price_start = special_price_final;
+    } else if (special_step == 0) {
+        special_price_start = special_price_final;
+    }
+    
+    $container.find('.autocalc-product-special').html( price_format(special_price_start) );
+    
+    if (special_price_start != special_price_final) {
+        special_timeout_id = setTimeout(animateSpecialPrice_callback, animate_delay);
+    }
+}
+
+function animateSpecialPrice(price) {
+    special_price_start = special_price_final;
+    special_price_final = price;
+    special_step = (special_price_final - special_price_start) / 10;
+    
+    clearTimeout(special_timeout_id);
+    special_timeout_id = setTimeout(animateSpecialPrice_callback, animate_delay);
+}
+<?php } ?>
+
+
+function recalculateprice(product)
+{
+    var main_price = <?php echo (float)$price_value; ?>;
+    var input_quantity = Number($container.find('input[name="quantity"]').val());
+    var special = <?php echo (float)$special_value; ?>;
+    var tax = 0;
+    discount_coefficient = 1;
+    
+    if (isNaN(input_quantity)) input_quantity = 0;
+    
+    <?php if ($special) { ?>
+        special_coefficient = <?php echo ((float)$price_value/(float)$special_value); ?>;
+    <?php } else { ?>
+        <?php if (empty($autocalc_option_discount)) { ?>
+            main_price = process_discounts(main_price, input_quantity);
+            tax = process_discounts(tax, input_quantity);
+        <?php } else { ?>
+            if (main_price) discount_coefficient = process_discounts(main_price, input_quantity) / main_price;
+        <?php } ?>
+    <?php } ?>
+    
+    
+    var option_price = 0;
+    
+    <?php if ($points) { ?>
+      var points = <?php echo (float)$points_value; ?>;
+      $container.find('input:checked,option:selected').each(function() {
+          if ($(this).data('points')) points += Number($(this).data('points'));
+      });
+      $container.find('.autocalc-product-points').html(points);
+    <?php } ?>
+    
+    $container.find('input:checked,option:selected').each(function() {
+      if ($(this).data('prefix') == '=') {
+        option_price += Number($(this).data('price'));
+        main_price = 0;
+        special = 0;
+      }
+    });
+    
+    $container.find('input:checked,option:selected').each(function() {
+      if ($(this).data('prefix') == '+') {
+        option_price += Number($(this).data('price'));
+      }
+      if ($(this).data('prefix') == '-') {
+        option_price -= Number($(this).data('price'));
+      }
+      if ($(this).data('prefix') == 'u') {
+        pcnt = 1.0 + (Number($(this).data('price')) / 100.0);
+        option_price *= pcnt;
+        main_price *= pcnt;
+        special *= pcnt;
+      }
+      if ($(this).data('prefix') == 'd') {
+        pcnt = 1.0 - (Number($(this).data('price')) / 100.0);
+        option_price *= pcnt;
+        main_price *= pcnt;
+        special *= pcnt;
+      }
+      if ($(this).data('prefix') == '*') {
+        option_price *= Number($(this).data('price'));
+        main_price *= Number($(this).data('price'));
+        special *= Number($(this).data('price'));
+      }
+      if ($(this).data('prefix') == '/') {
+        option_price /= Number($(this).data('price'));
+        main_price /= Number($(this).data('price'));
+        special /= Number($(this).data('price'));
+      }
+    });
+    
+    special += option_price;
+    main_price += option_price;
+
+    <?php if ($special) { ?>
+      <?php if (empty($autocalc_option_special))  { ?>
+        main_price = special * special_coefficient;
+      <?php } else { ?>
+        special = main_price / special_coefficient;
+      <?php } ?>
+      tax = special;
+    <?php } else { ?>
+      <?php if (!empty($autocalc_option_discount)) { ?>
+          main_price *= discount_coefficient;
+      <?php } ?>
+      tax = main_price;
+    <?php } ?>
+    
+    // Process TAX.
+    main_price = calculate_tax(main_price);
+    special = calculate_tax(special);
+    
+    <?php if (!$autocalc_not_mul_qty) { ?>
+    if (input_quantity > 0) {
+      main_price *= input_quantity;
+      special *= input_quantity;
+      tax *= input_quantity;
+    }
+    <?php } ?>
+
+    // Display Main Price
+    animateMainPrice(main_price, product);
+      
+    <?php if ($special) { ?>
+      animateSpecialPrice(special);
+    <?php } ?>
+}
+
+$container.find('input[type="checkbox"]').on('change', function() { recalculateprice(); });
+$container.find('input[type="radio"]').on('change', function() { recalculateprice(); });
+$container.find('select').on('change', function(e) { recalculateprice(e); });
+
+(function($quantity){
+$quantity.data('val', $quantity.val());
+(function() {
+    if ($quantity.val() != $quantity.data('val')){
+        $quantity.data('val',$quantity.val());
+        recalculateprice();
+    }
+    setTimeout(arguments.callee, 250);
+})();
+})($container.find('input[name="quantity"]'));
+
+<?php if ($autocalc_select_first) { ?>
+$container.find('select[name^="option"] option[value=""]').remove();
+last_name = '';
+$container.find('input[type="radio"][name^="option"]').each(function(){
+    if ($(this).attr('name') != last_name) $(this).prop('checked', true);
+    last_name = $(this).attr('name');
+});
+<?php } ?>
+
+recalculateprice();
+
+})($('#quick_order').length ? $('#quick_order') : $('.b-product-custom'));
+});
+
+//--></script>
+      
+                <?php if ($options) { ?>
+                <? //print_r($product) ?>
+                  <? foreach($options as $option) { ?>
+                    <?php if ($option['type'] == 'select') { ?>
+                    <div class="b-product-size b-product-size_small">
+                      <select data-name="<?php echo $option['product_option_id']; ?>" name="option[<?php echo $option['product_option_id']; ?>]" id="input-option<?php echo $option['product_option_id']; ?>" class="b-product-size__select">
+                          <option class="b-product-size__option" value="<?=$product['default_price']?>" data-price="<?=$product['default_price']?>" disabled>Размер
+                          </option>
+                        <?php foreach ($option['product_option_value'] as  $key => $option_value) { ?>
+                        <? if($key==0) { ?>
+                          <option class="b-product-size__option" value="<?php echo $option_value['product_option_value_id']; ?>" data-points="<?php echo (isset($option_value['points_value']) ? $option_value['points_value'] : 0); ?>" data-prefix="<?php echo $option_value['price_prefix']; ?>" data-price="<?php echo $option_value['price_value']; ?>" ><?php echo $option_value['name']; ?>
+                          </option>
+                          <? } else { ?>
+                            <option class="b-product-size__option" value="<?php echo $option_value['product_option_value_id']; ?>" data-points="<?php echo (isset($option_value['points_value']) ? $option_value['points_value'] : 0); ?>" data-prefix="<?php echo $option_value['price_prefix']; ?>" data-price="<?php echo $option_value['price_value']; ?>"><?php echo $option_value['name']; ?>
+                            </option>
+                          <? } ?>
+                        <? } ?>
+                      </select>
+                      <div class="b-product-like" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"></div>
+                      <div class="b-product-compare" onclick="compare.add('<?php echo $product['product_id']; ?>');"></div>
+                      <input style="display: none" type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
+                    </div>
+                    <? } ?>
+                  <? } ?>
+                  <? } else { ?>
+                  <div class="b-product-size b-product-size_small">
+                    <div class="b-product-like" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"></div>
+                    <div class="b-product-compare" onclick="compare.add('<?php echo $product['product_id']; ?>');"></div>
+                  </div>
+                  <? } ?>
+                <div class="clear"></div>
                 <?php if ($product['price']) { ?>
-                <p class="price">
-                  <?php if (!$product['special']) { ?>
-                  <?php echo $product['price']; ?>
-                  <?php } else { ?>
-                  <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
-                  <?php if($bigshop_percentage_discount_badge == 1) { ?>
-                  <span class="saving">-<?php echo $product['saving']; ?>%</span>
-                  <?php } ?>
-                  <?php } ?>
-                  <?php if ($product['tax']) { ?>
-                  <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
-                  <?php } ?>
-                </p>
+                <div class="b-product-buy b-product-buy_small">
+                  <div class="b-product-price b-product-price_small">
+                    <?php if (!$product['special']) { ?>
+                        <div class="b-product-price__new"><?php echo $product['price']; ?></div>
+                    <?php } else { ?>
+                        <div class="b-product-price__old"><?php echo $product['price']; ?></div>
+                        <div class="b-product-price__new"><?php echo $product['special']; ?></div>
+                    <?php } ?>
+                  </div>
+                  <div class="b-buy-button b-buy-button_small">
+                      <div class="cart">
+                          <div>
+                              <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" data-loading-text="Загрузка..." class="b-buy-button__link"><?php echo $button_cart; ?></button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="clear"></div>
+                </div><!-- /.b-product-buy-->
                 <?php } ?>
-                <?php if ($product['rating']) { ?>
-                <div class="rating">
-                  <?php for ($i = 1; $i <= 5; $i++) { ?>
-                  <?php if ($product['rating'] < $i) { ?>
-                  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                  <?php } else { ?>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-                  <?php } ?>
-                  <?php } ?>
-                </div>
-                <?php } ?>
-              </div>
-              <div class="button-group">
-                <button class="btn-primary" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');">
-                <span><?php echo $button_cart; ?></span></button>
-                <div class="add-to-links">
-                  <button type="button" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i> <span><?php echo $button_wishlist; ?></span></button>
-                  <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i> <span><?php echo $button_compare; ?></span></button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -355,6 +638,17 @@ $( window ).resize(function() {
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
       </div>
       <?php } ?>
+    <?php if ($description) { ?>
+        <br>
+    <div class="row">
+        <!--<?php if ($thumb) { ?>
+        <div class="col-sm-2"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
+        <?php } ?>-->
+        <?php if ($description) { ?>
+        <div class="col-sm-12"><?php echo $description; ?></div>
+        <?php } ?>
+    </div>
+    <?php } ?>
       <?php if (!$categories && !$products) { ?>
       <p><?php echo $text_empty; ?></p>
       <div class="buttons">

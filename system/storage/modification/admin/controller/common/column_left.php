@@ -187,6 +187,16 @@ class ControllerCommonColumnLeft extends Controller {
 				);					
 			}	
 			
+
+			if ($this->user->hasPermission('access', 'extension/installer')) {		
+				$extension[] = array(
+					'name'	   => $this->language->get('heading_title_uninstaller'),
+                    'href'     => $this->url->link('extension/installer/do_uninstall', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+					
+            
 			if ($this->user->hasPermission('access', 'extension/extension')) {		
 				$extension[] = array(
 					'name'	   => $this->language->get('text_extension'),
@@ -644,6 +654,15 @@ class ControllerCommonColumnLeft extends Controller {
 				$tool[] = array(
 					'name'	   => $this->language->get('text_backup'),
 					'href'     => $this->url->link('tool/backup', 'token=' . $this->session->data['token'], true),
+					'children' => array()		
+				);
+			}
+			
+
+			if ($this->user->hasPermission('access', 'tool/export_import')) {
+				$tool[] = array(
+					'name'	   => $this->language->get('text_export_import'),
+					'href'     => $this->url->link('tool/export_import', 'token=' . $this->session->data['token'], true),
 					'children' => array()		
 				);
 			}

@@ -64,7 +64,6 @@ class ControllerProductCategory extends Controller {
 			$path = '';
 
 			$parts = explode('_', (string)$this->request->get['path']);
-
 			$category_id = (int)array_pop($parts);
 
 			foreach ($parts as $path_id) {
@@ -99,7 +98,7 @@ class ControllerProductCategory extends Controller {
 			} else {
 				$data['heading_title'] = $category_info['name'];
 			}
-
+			$data['text_select'] = $this->language->get('text_select');
 			$data['text_refine'] = $this->language->get('text_refine');
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_quantity'] = $this->language->get('text_quantity');
@@ -214,20 +213,81 @@ class ControllerProductCategory extends Controller {
 					$rating = false;
 				}
 
+				$product_info = $this->model_catalog_product->getProduct($result['product_id']);
+				$data['points'] = $product_info['points'];
+				$data['price'] = $price;
+				$data['special'] = $special;
+				$data['tax'] = $tax;
+
+				$discounts = $this->model_catalog_product->getProductDiscounts($result['product_id']);
+
+				$data['discounts'] = array();
+
+				foreach ($discounts as $discount) {
+					$data['discounts'][] = array(
+						'quantity' => $discount['quantity'],
+						'price'    => $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency'])
+					);
+				}
+				$data[$result['product_id']]['options'] = array();
+				foreach ($this->model_catalog_product->getProductOptions($result['product_id']) as $option) {
+					$product_option_value_data = array();
+					foreach ($option['product_option_value'] as $option_value) {
+						if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
+							if ((($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) && (float)$option_value['price']) {
+								$price = $this->currency->format($this->tax->calculate($option_value['price'], $product_info['tax_class_id'], $this->config->get('config_tax') ? 'P' : false), $this->session->data['currency']);
+							} else {
+								$price = false;
+							}
+
+							$product_option_value_data[] = array(
+								'product_option_value_id' => $option_value['product_option_value_id'],
+								'option_value_id'         => $option_value['option_value_id'],
+								'name'                    => $option_value['name'],
+								'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
+								'price'                   => $price,
+								'price_prefix'            => $option_value['price_prefix']
+							);
+						}
+					}
+
+					$data[$result['product_id']]['options'][] = array(
+						'product_option_id'    => $option['product_option_id'],
+						'product_option_value' => $product_option_value_data,
+						'option_id'            => $option['option_id'],
+						'name'                 => $option['name'],
+						'type'                 => $option['type'],
+						'value'                => $option['value'],
+						'required'             => $option['required']
+					);
+				}
+				if(array_key_exists(0,$parts) && $parts) {
+                    $path_seo = $parts[0];
+                } else {
+                    $path_seo = $this->request->get['path'];
+                }
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
-					'price'       => $price,
-					'special'     => $special,
-					'tax'         => $tax,
+					'price'       => $data['price'],
+					'default_price' => $result['price'],
+					'special'     => $data['special'],
+					'tax'         => $data['tax'],
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
-					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
+					//'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
+					'href'        =>
+                        count($parts) >= 2
+                        ?
+                        $this->url->link('product/product','path='.$parts[0].'_'.$category_id .'&product_id=' . $result['product_id'] . $url)
+                        :
+                        $this->url->link('product/product','path='.$path_seo .'&product_id=' . $result['product_id'] . $url) ,
+					'options' 	  => $data[$result['product_id']]['options']
 				);
 			}
-
 			$url = '';
 
 			if (isset($this->request->get['filter'])) {

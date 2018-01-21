@@ -1,10 +1,10 @@
 <div id="cart">
   <button type="button" data-toggle="dropdown" data-loading-text="<?php echo $text_loading; ?>" class="heading dropdown-toggle">
-  <div class="pull-left flip">
-    <div class="h4"></div>
-  </div>
-  <span id="cart-total"><?php echo $text_items; ?></span> <i class="fa fa-caret-down"></i></button>
-  <ul class="dropdown-menu">
+    <div class="b-user-menu__link">
+      <i class="icon icon_cart"></i><span id="cart-total"><?php echo $text_items; ?></span> <i class="fa fa-caret-down"></i>
+    </div>
+  </button>
+    <ul class="dropdown-menu">
     <?php if ($products || $vouchers) { ?>
     <li>
       <table class="table">
@@ -60,3 +60,4 @@
     <?php } ?>
   </ul>
 </div>
+

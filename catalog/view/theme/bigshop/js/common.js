@@ -135,7 +135,7 @@ var cart = {
 
 					// Need to set timeout otherwise it wont update the total
 					setTimeout(function () {
-						$('#cart > button').html('<div class="pull-left flip"><h4></h4></div><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i>');
+						$('#cart > button').html('<div class="b-user-menu__link"><i class="icon icon_cart"></i><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i></div>');
 					}, 100);
 
 					$('html, body').animate({ scrollTop: 0 }, 'slow');
@@ -163,7 +163,7 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<div class="pull-left flip"><h4></h4></div><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i>');
+					$('#cart > button').html('<div class="b-user-menu__link"><i class="icon icon_cart"></i><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i></div>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -192,7 +192,7 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<div class="pull-left flip"><h4></h4></div><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i>');
+					$('#cart > button').html('<div class="b-user-menu__link"><i class="icon icon_cart"></i><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i></div>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -227,7 +227,7 @@ var voucher = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<div class="pull-left flip"><h4></h4></div><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i>');
+					$('#cart > button').html('<div class="b-user-menu__link"><i class="icon icon_cart"></i><span id="cart-total"> ' + json['total'] + '</span> <i class="fa fa-caret-down"></i></div>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {

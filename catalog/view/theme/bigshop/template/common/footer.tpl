@@ -77,7 +77,6 @@ if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$la
           <h5><?php echo $text_service; ?></h5>
           <ul>
             <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-            <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
             <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
           </ul>
         </div>
@@ -85,10 +84,6 @@ if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$la
           <h5><?php echo $text_extra; ?></h5>
           <ul>
             <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-            <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-            <?php if($bigshop_affiliate_status == 1) { ?>
-            <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-            <?php } ?>
             <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
           </ul>
         </div>

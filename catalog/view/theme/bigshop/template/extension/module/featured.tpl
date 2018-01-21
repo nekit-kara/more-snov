@@ -4,42 +4,39 @@
 <div class="row products-category featured_carousel mod">
 <?php foreach ($products as $product) { ?>
 <div class="product-layout">  
-    <div class="product-thumb clearfix">
-      <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
-      <div class="caption">
-        <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
-        <!--<p><?php echo $product['description']; ?></p>-->
-        <?php if ($product['price']) { ?>
-        <p class="price">
+    <div class="product-thumb b-product-custom clearfix">
+      <div class="image b-product-custom__image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
+      <div class="caption b-product-custom__caption">
+          <h4 class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+          <div class="b-product-custom__params">
+              <?php $params_block; ?>
+          </div>
+      </div>
+      <div class="b-product-size b-product-size_small">
+          <div class="b-product-like" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"></div>
+          <div class="b-product-compare" onclick="compare.add('<?php echo $product['product_id']; ?>');"></div>
+      </div>
+      <div class="clear"></div>
+      <?php if ($product['price']) { ?>
+      <div class="b-product-buy b-product-buy_small">
+        <div class="b-product-price b-product-price_small">
           <?php if (!$product['special']) { ?>
-          <?php echo $product['price']; ?>
+              <div class="b-product-price__new"><?php echo $product['price']; ?></div>
           <?php } else { ?>
-          <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
-          <?php if($bigshop_percentage_discount_badge == 1) { ?>
-            <span class="saving">-<?php echo $product['saving']; ?>%</span>
-            <?php } ?>
-          <?php } ?>
-        </p>
-        <?php } ?>
-        <?php if ($product['rating']) { ?>
-        <div class="rating">
-          <?php for ($i = 1; $i <= 5; $i++) { ?>
-          <?php if ($product['rating'] < $i) { ?>
-          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-          <?php } else { ?>
-          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-          <?php } ?>
+              <div class="b-product-price__old"><?php echo $product['price']; ?></div>
+              <div class="b-product-price__new"><?php echo $product['special']; ?></div>
           <?php } ?>
         </div>
-        <?php } ?>
-      </div>
-      <div class="button-group">
-        <button class="btn-primary" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');"><span><?php echo $button_cart; ?></span></button>
-        <div class="add-to-links">
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
+        <div class="b-buy-button b-buy-button_small">
+            <div class="cart">
+                <div>
+                    <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" data-loading-text="Загрузка..." class="b-buy-button__link"><?php echo $button_cart; ?></button>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="clear"></div>
+      </div><!-- /.b-product-buy-->
+      <?php } ?>      
     </div>
   </div>
 <?php } ?>

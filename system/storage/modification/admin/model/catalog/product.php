@@ -439,6 +439,9 @@ class ModelCatalogProduct extends Model {
 				'meta_h1'           => $result['meta_h1'],
 				'meta_description' => $result['meta_description'],
 				'meta_keyword'     => $result['meta_keyword'],
+
+			'meta_h1'     => $result['meta_h1'],
+			
 				'tag'              => $result['tag']
 			);
 		}

@@ -43,6 +43,8 @@
 <?php } else if($bigshop_skin == 3) { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/bigshop/stylesheet/stylesheet-skin3.css" />
 <?php } ?>
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/bigshop/stylesheet/new-style.css" />
+<script type="text/javascript" src="catalog/view/theme/bigshop/js/scripts.js"></script>
 <script type="text/javascript" src="catalog/view/theme/bigshop/js/common.min.js"></script>
 <script type="text/javascript" src="catalog/view/theme/bigshop/js/custom.min.js"></script>
 <?php foreach ($scripts as $script) { ?>
@@ -401,12 +403,14 @@ color:<?php echo $bigshop_sub_menu_heading_text_color;
 }
 <?php
 }
+/*
 if(($bigshop_sub_menu_heading_text_separator_color!='') && ($bigshop_sub_menu_heading_text_separator_style!='')) {
 ?> #menu .nav > li.categories_hor > div > .column > a {
 border-bottom:1px <?php echo $bigshop_sub_menu_heading_text_separator_style?> <?php echo $bigshop_sub_menu_heading_text_separator_color?>
 }
 <?php
 }
+*/
 if($bigshop_sub_menu_link_color!='') {
 ?> #menu .nav > li.categories > div > .column > a, #menu .nav > li div > ul > li > a, #menu .nav > li.menu_brands > div > div a, #menu .custom_block, #menu .custom_block a, #menu .nav > li > div > ul li span.submore:after, #menu .nav > li.categories > div > .column span.submore:after, #menu .nav > li.categories_hor > div > .column span.submore:after {
 color: <?php echo $bigshop_sub_menu_link_color;
@@ -1336,119 +1340,64 @@ border-top:<?php echo $bigshop_menu_link_border_bottom_size ?>px <?php echo $big
 <section class="wrapper-wide">
 <?php } ?>
 <div id="header" >
-  <header class="header-row">
-    <div class="container">
-      <div class="table-container">
-        <nav class="htop col-md-9 pull-right flip inner" id="top"> <span class="drop-icon visible-sm visible-xs"><i class="fa fa-align-justify"></i></span>
-          <div id="top-links" class="nav pull-right flip">
-            <ul>
-              <?php if ($logged) { ?>
-              <li id="my_account" class="dropdown"><a href="<?php echo $account; ?>"><?php echo $text_account; ?> <i class="fa fa-caret-down"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-                  <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-                  <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-                  <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-                </ul>
-              </li>
-              <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-              <?php } else { ?>
-              <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
-              <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
-              <?php } ?>
-            </ul>
-          </div>
-          <div class="pull-right flip left-top">
-            <?php $lang = (int)$config_language_id;?>
-            <div class="links">
-              <ul>
-              <?php if(($bigshop_custom_link1_top!='') && ($bigshop_custom_link1_top ==1)) {
- 	if((isset($bigshop_custom_link1_top_title[$lang]) && $bigshop_custom_link1_top_title[$lang] != '')) { ?>
-                <li><a href="<?php echo $bigshop_custom_link1_top_url; ?>" target="<?php echo $bigshop_target_link1_top; ?>"> <?php echo $bigshop_custom_link1_top_title[$lang]; ?></a></li>
-                <?php } ?>
-                <?php } ?>
-                <?php if(($bigshop_custom_link2_top!='') && ($bigshop_custom_link2_top ==1)) {
- 	if((isset($bigshop_custom_link2_top_title[$lang]) && $bigshop_custom_link2_top_title[$lang] != '')) { ?>
-                <li><a href="<?php echo $bigshop_custom_link2_top_url; ?>" target="<?php echo $bigshop_target_link2_top; ?>"> <?php echo $bigshop_custom_link2_top_title[$lang]; ?></a></li>
-                <?php } ?>
-                <?php } ?>
-                <?php if(($bigshop_custom_link3_top!='') && ($bigshop_custom_link3_top ==1)) {
- 	if((isset($bigshop_custom_link3_top_title[$lang]) && $bigshop_custom_link3_top_title[$lang] != '')) { ?>
-                <li><a href="<?php echo $bigshop_custom_link3_top_url; ?>" target="<?php echo $bigshop_target_link3_top; ?>"> <?php echo $bigshop_custom_link3_top_title[$lang]; ?></a></li>
-                <?php } ?>
-                <?php } ?>
-                
-                <?php if($bigshop_custom_block_top_status ==1) {
-    
-    if(isset($bigshop_custom_block_top_title[$lang]) && $bigshop_custom_block_top_title[$lang]!= '') { ?>
-                <li class="wrap_custom_block hidden-sm hidden-xs"><a><?php echo $bigshop_custom_block_top_title[$lang]; ?><b></b></a>
-                  <div class="custom_block">
-                    <ul>
-                    <?php if(isset($bigshop_custom_block_top_content[$lang]['description']) && $bigshop_custom_block_top_content[$lang]['description']!=""){?>
-                      <li><?php echo html_entity_decode($bigshop_custom_block_top_content[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?></li>
-                      <?php } ?>
-                    </ul>
-                  </div>
-                </li>
-                <?php } ?>
-                <?php } ?>
-                
-                
-                <?php if($bigshop_custom_block2_top_status ==1) {
-    
-    if(isset($bigshop_custom_block2_top_title[$lang]) && $bigshop_custom_block2_top_title[$lang]!= '') { ?>
-                <li class="wrap_custom_block hidden-sm hidden-xs"><a><?php echo $bigshop_custom_block2_top_title[$lang]; ?><b></b></a>
-                  <div class="custom_block">
-                    <ul>
-                    <?php if(isset($bigshop_custom_block2_top_content[$lang]['description']) && $bigshop_custom_block2_top_content[$lang]['description']!=""){?>
-                      <li><?php echo html_entity_decode($bigshop_custom_block2_top_content[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?></li>
-                      <?php } ?>
-                     </ul>
-                  </div>
-                </li>
-                <?php } ?>
-                <?php } ?>
-                <?php if($bigshop_wishlist_top_link == 1) { ?>
-                <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a></li>
-                <?php } ?>
-                <?php if($bigshop_checkout_top_link == 1) { ?>
-                <li><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
-                <?php } ?>
-              </ul>
-            </div>
-            <?php echo $language; ?> <?php echo $currency; ?> </div>
-        </nav>
-        <div class="col-table-cel col-md-3 col-sm-4 col-xs-12 inner">
-          <?php if ($logo) { ?>
-          <div id="logo"><a href="<?php echo $home; ?>"><img class="img-responsive" src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
-          <?php } ?>
-        </div>
-        <div class="col-md-4 col-md-push-5 col-sm-8 col-xs-12 inner">
-          <div class="links_contact pull-right flip">
-            <ul>
-            <?php if($bigshop_top_bar_contact_status ==1) {
-      
- 	if((isset($bigshop_top_bar_contact[$lang]) && $bigshop_top_bar_contact[$lang] != '')) { ?>
-              <li class="mobile"><i class="fa fa-phone"></i><?php echo $bigshop_top_bar_contact[$lang]; ?></li>
-              <?php } ?>
-              <?php } ?>
-              <?php if($bigshop_top_bar_email_status == 1) {
-            if((isset($bigshop_top_bar_email[$lang]) && $bigshop_top_bar_email[$lang] != '')) { ?>
-            <li class="email"><a href="mailto:<?php echo $bigshop_top_bar_email[$lang]; ?>"><i class="fa fa-envelope"></i><?php echo $bigshop_top_bar_email[$lang]; ?></a></li>
-              <?php } ?>
-              <?php } ?>
-            </ul>
-          </div>
-        </div>
-        <div class="clearfix visible-sm-block visible-xs-block"></div>
-        <div class="col-md-5 col-md-pull-4 col-sm-8 col-xs-12 inner2"><?php echo $search; ?></div>
-        <div class="col-md-9 pull-right flip col-sm-4 col-xs-12 inner"> <?php echo $cart; ?> </div>
-      </div>
-    </div>
-  </header>
-  <?php if($bigshop_main_menu_style == 1) { ?>
-  <div class="container">
-    <?php } ?>
+	<header class="header-row">
+		<div class="container header-container">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 pull-left">
+                    <div id="logo"><a href="/"><img src="catalog/view/theme/bigshop/images/header/logo.png" alt=""></a></div>
+                </div>
+                <div class="col-lg-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-5 col-xs-12">
+                            <div class="b-text-icon b-text-icon_mail">
+                                <div class="b-text-icon__image icon icon_mail"></div>
+                                <div class="b-text-icon__text"><a href="mailto:info@more-snov.ru">INFO@MORE-SNOV.RU</a></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-xs-12 pull-right">
+                            <div class="b-top-menu">
+                                <ul class="b-top-menu__list">
+                                    <li class="b-top-menu__item"><a href="/o-nas" class="b-top-menu__link">О нас</a></li>
+                                    <li class="b-top-menu__item"><a href="/oplata-i-dostavka" class="b-top-menu__link">Доставка и оплата</a></li>
+                                    <li class="b-top-menu__item"><a href="/vozvrat" class="b-top-menu__link">Возврат</a></li>
+                                    <li class="b-top-menu__item"><a href="#" class="b-top-menu__link">Вопрос и ответ</a></li>
+                                    <li class="b-top-menu__item"><a href="#" class="b-top-menu__link">Полезное</a></li>
+                                    <li class="b-top-menu__item"><a href="/contact" class="b-top-menu__link">Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-xs-12">
+                            <div class="b-text-icon b-text-icon_work">
+                                <div class="b-text-icon__image icon icon_clock"></div>
+                                <div class="b-text-icon__text">пн-пт:  9:00-20:00 <br>сб-вс: 10:00-19:00</div>
+                            </div>
+                            <div class="b-text-icon b-text-icon_work">
+                                <div class="b-text-icon__image icon icon_tel"></div>
+                                <div class="b-text-icon__text">+7 (1234) 56-57-58 <br>+7 (1234) 56-57-58</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-xs-12 pull-right text-right">
+                            <div class="b-user-menu">
+                                <ul class="b-user-menu__list">
+	            	                <?php if($bigshop_wishlist_top_link == 1) { ?>
+	               						 <li class="b-user-menu__item"><a href="<?php echo $wishlist; ?>" class="b-user-menu__link" id="wishlist-total"><i class="icon icon_like"></i><?php echo $text_wishlist; ?></a></li>
+	            					<?php } ?>
+                                    </li>
+                                    <?php if ($logged) { ?>
+                                    	<li class="b-user-menu__item"><a href="<?php echo $logout; ?>" class="b-user-menu__link"><i class="icon icon_login"></i><?php echo $text_logout; ?></a>
+                                		</li>
+                                	<? } else { ?>
+                                    	<li class="b-user-menu__item"><a href="<?php echo $login; ?>" class="b-user-menu__link"><i class="icon icon_login"></i><?php echo $text_login; ?></a>
+                                		</li>
+                                	<? } ?>
+                                    <li class="b-user-menu__item"><?php echo $cart; ?><!--<a href="#" class="b-user-menu__link"><i class="icon icon_cart"></i></a>--></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
     <nav id="menu" class="navbar <?php if($bigshop_main_menu_style == 2) { ?>full<?php } ?>">
       <div class="navbar-header"> <span class="visible-xs visible-sm">
         <?php echo $bigshop_mobile_menu_title[$lang]; ?>
@@ -1456,19 +1405,10 @@ border-top:<?php echo $bigshop_menu_link_border_bottom_size ?>px <?php echo $big
         <!--<button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">Go</button>-->
       </div>
       <?php if($bigshop_main_menu_style == 2) { ?>
-      <div class="container">
+      <div class="b-main-menu">
         <?php } ?>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <?php if($bigshop_home_page_link == 1) { ?>
-            <li><a class="home_link" title="<?php echo $text_home; ?>" href="<?php echo $home; ?>">
-              <?php if($bigshop_home_page_link_icon == 1) { ?>
-              <?php echo $text_home; ?>
-              <?php } else { ?>
-              <i class="fa fa-home"></i>
-              <?php } ?>
-              </a></li>
-            <?php } ?>
             <?php if ($categories) {?>
             <?php if($bigshop_top_menu == 1) {?>
             <?php foreach ($categories as $category) { ?>
@@ -1628,17 +1568,17 @@ border-top:<?php echo $bigshop_menu_link_border_bottom_size ?>px <?php echo $big
             <?php } ?>
             <?php if($bigshop_top_menu == 4) {?>
             <?php foreach ($categories as $category) { ?>
-            <li class="categories_hor dropdown"> <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+            <li class="categories_hor dropdown"> <a class="categories__parent-link" href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
               <?php if ($category['children']) { ?>
               <div class="dropdown-menu">
                 <?php for ($i = 0; $i < count($category['children']);) { ?>
                 <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
                 <?php for (; $i < $j; $i++) { ?>
                 <?php if (isset($category['children'][$i])) { ?>
-                <div class="column col-lg-2 col-md-3"> <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
+                <div class="column col-lg-2 col-md-3 b-main-menu__parent"> <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
                   <?php if ($category['children'][$i]['children_level2']) { ?>
                   <div>
-                    <ul>
+                    <ul class="b-main-menu__children">
                       <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
                       <li> <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a> </li>
                       <?php } ?>
@@ -1782,64 +1722,10 @@ border-top:<?php echo $bigshop_menu_link_border_bottom_size ?>px <?php echo $big
       </div>
       <?php } ?>
     </nav>
-    <?php if($bigshop_main_menu_style == 1) { ?>
-  </div>
-  <?php } ?>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</header>
 </div>
-<div id="container">
-<?php if($bigshop_feature_box_per_row== 'pr1') { ?>
-<?php $class_fbox = 'col-xs-12'; ?>
-<?php } elseif($bigshop_feature_box_per_row == 'pr2') { ?>
-<?php $class_fbox = 'col-sm-6 col-xs-12'; ?>
-<?php } elseif($bigshop_feature_box_per_row == 'pr3') { ?>
-<?php $class_fbox = 'col-sm-4 col-xs-12'; ?>
-<?php } elseif($bigshop_feature_box_per_row == 'pr4') { ?>
-<?php $class_fbox = 'col-md-3 col-sm-6 col-xs-12'; ?>
-<?php } ?>
-<?php if(($bigshop_feature_box_homepage_only == 1) && (isset($ishome)) || ($bigshop_feature_box_homepage_only == 2)) { ?>
-<?php if($bigshop_feature_box_show_header_footer == 1) {
-
-if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$lang] != '') || (isset($bigshop_feature_box1_subtitle[$lang]) && $bigshop_feature_box1_subtitle[$lang] != '') || (isset($bigshop_feature_box2_title[$lang]) && $bigshop_feature_box2_title[$lang] != '') || (isset($bigshop_feature_box2_subtitle[$lang]) && $bigshop_feature_box2_subtitle[$lang] != '') || (isset($bigshop_feature_box3_title[$lang]) && $bigshop_feature_box3_title[$lang] != '') || (isset($bigshop_feature_box3_subtitle[$lang]) && $bigshop_feature_box3_subtitle[$lang] != '') || (isset($bigshop_feature_box4_title[$lang]) && $bigshop_feature_box4_title[$lang] != '') || (isset($bigshop_feature_box4_subtitle[$lang]) && $bigshop_feature_box4_subtitle[$lang] != '')) { ?>
-<div class="container">
-  <div class="custom-feature-box row">
-    <?php if($bigshop_feature_box1_status == 1) { if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$lang] != '') || (isset($bigshop_feature_box1_subtitle[$lang]) && $bigshop_feature_box1_subtitle[$lang] != '')) { ?>
-    <div class="<?php echo $class_fbox; ?>">
-      <div class="feature-box fbox_1">
-        <div class="title"><?php echo $bigshop_feature_box1_title[$lang]; ?></div>
-        <p><?php echo $bigshop_feature_box1_subtitle[$lang]; ?></p>
-      </div>
-    </div>
-    <?php } ?>
-    <?php } ?>
-    <?php if($bigshop_feature_box2_status == 1) { if((isset($bigshop_feature_box2_title[$lang]) && $bigshop_feature_box2_title[$lang] != '') || (isset($bigshop_feature_box2_subtitle[$lang]) && $bigshop_feature_box2_subtitle[$lang] != '')) { ?>
-    <div class="<?php echo $class_fbox; ?>">
-      <div class="feature-box fbox_2">
-        <div class="title"><?php echo $bigshop_feature_box2_title[$lang]; ?></div>
-        <p><?php echo $bigshop_feature_box2_subtitle[$lang]; ?></p>
-      </div>
-    </div>
-    <?php } ?>
-    <?php } ?>
-    <?php if($bigshop_feature_box3_status == 1) { if((isset($bigshop_feature_box3_title[$lang]) && $bigshop_feature_box3_title[$lang] != '') || (isset($bigshop_feature_box3_subtitle[$lang]) && $bigshop_feature_box3_subtitle[$lang] != '')) { ?>
-    <div class="<?php echo $class_fbox; ?>">
-      <div class="feature-box fbox_3">
-        <div class="title"><?php echo $bigshop_feature_box3_title[$lang]; ?></div>
-        <p><?php echo $bigshop_feature_box3_subtitle[$lang]; ?></p>
-      </div>
-    </div>
-    <?php } ?>
-    <?php } ?>
-    <?php if($bigshop_feature_box4_status == 1) { if((isset($bigshop_feature_box4_title[$lang]) && $bigshop_feature_box4_title[$lang] != '') || (isset($bigshop_feature_box4_subtitle[$lang]) && $bigshop_feature_box4_subtitle[$lang] != '')) { ?>
-    <div class="<?php echo $class_fbox; ?>">
-      <div class="feature-box fbox_4">
-        <div class="title"><?php echo $bigshop_feature_box4_title[$lang]; ?></div>
-        <p><?php echo $bigshop_feature_box4_subtitle[$lang]; ?></p>
-      </div>
-    </div>
-    <?php } ?>
-    <?php } ?>
-  </div>
-</div>
-<?php } ?>
-<?php } ?>
-<?php } ?>
+ 

@@ -31,27 +31,13 @@ class ControllerExtensionModification extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 		}
 
 		$this->getList();
 	}
 
-	public function refresh($data = array()) {
+	public function refresh() {
 		$this->load->language('extension/modification');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -68,6 +54,30 @@ class ControllerExtensionModification extends Controller {
 
 			//Log
 			$log = array();
+			$error_log = array();
+
+			// Clear vqmod cache
+			$vqmod_path = substr(DIR_SYSTEM, 0, -7) . 'vqmod/';
+
+			if (file_exists($vqmod_path)) {
+				$vqmod_cache = glob($vqmod_path.'vqcache/vq*');
+
+				if ($vqmod_cache) {
+					foreach ($vqmod_cache as $file) {
+						if (file_exists($file)) {
+							@unlink($file);
+						}
+					}
+				}
+
+				if (file_exists($vqmod_path.'mods.cache')) {
+					@unlink($vqmod_path.'mods.cache');
+				}
+
+				if (file_exists($vqmod_path.'checked.cache')) {
+					@unlink($vqmod_path.'checked.cache');
+				}
+			}
 
 			// Clear all modification files
 			$files = array();
@@ -134,16 +144,13 @@ class ControllerExtensionModification extends Controller {
 			$modification = array();
 
 			foreach ($xml as $xml) {
-				if (empty($xml)){
-					continue;
-				}
-				
 				$dom = new DOMDocument('1.0', 'UTF-8');
 				$dom->preserveWhiteSpace = false;
 				$dom->loadXml($xml);
 
 				// Log
 				$log[] = 'MOD: ' . $dom->getElementsByTagName('name')->item(0)->textContent;
+				$error_log_mod = 'MOD: ' . $dom->getElementsByTagName('name')->item(0)->textContent;
 
 				// Wipe the past modification store in the backup array
 				$recovery = array();
@@ -164,16 +171,16 @@ class ControllerExtensionModification extends Controller {
 						$path = '';
 
 						// Get the full path of the files that are going to be used for modification
-						if ((substr($file, 0, 7) == 'catalog')) {
-							$path = DIR_CATALOG . substr($file, 8);
+						if (substr($file, 0, 7) == 'catalog') {
+							$path = DIR_CATALOG . str_replace('../', '', substr($file, 8));
 						}
 
-						if ((substr($file, 0, 5) == 'admin')) {
-							$path = DIR_APPLICATION . substr($file, 6);
+						if (substr($file, 0, 5) == 'admin') {
+							$path = DIR_APPLICATION . str_replace('../', '', substr($file, 6));
 						}
 
-						if ((substr($file, 0, 6) == 'system')) {
-							$path = DIR_SYSTEM . substr($file, 7);
+						if (substr($file, 0, 6) == 'system') {
+							$path = DIR_SYSTEM . str_replace('../', '', substr($file, 7));
 						}
 
 						if ($path) {
@@ -202,7 +209,7 @@ class ControllerExtensionModification extends Controller {
 										$original[$key] = preg_replace('~\r?\n~', "\n", $content);
 
 										// Log
-										$log[] = PHP_EOL . 'FILE: ' . $key;
+										$log[] = 'FILE: ' . $key;
 									}
 
 									foreach ($operations as $operation) {
@@ -360,24 +367,30 @@ class ControllerExtensionModification extends Controller {
 										}
 
 										if (!$status) {
+											if ($error != 'skip') {
+												$error_log[] = '----------------------------------------------------------------';
+												$error_log[] = 'NOT FOUND!';
+												$error_log[] = 'CODE: ' . $search;
+												$error_log[] = 'FILE: ' . $key;
+												$error_log[] = $error_log_mod;
+											}
+
+											// Log
+											$log[] = 'NOT FOUND!';
+
+											// Skip current operation
+											if ($error == 'skip') {
+											continue;
+											}
+
 											// Abort applying this modification completely.
 											if ($error == 'abort') {
 												$modification = $recovery;
+
 												// Log
-												$log[] = 'NOT FOUND - ABORTING!';
+												$log[] = 'ABORTING!';
+
 												break 5;
-											}
-											// Skip current operation or break
-											elseif ($error == 'skip') {
-												// Log
-												$log[] = 'NOT FOUND - OPERATION SKIPPED!';
-												continue;
-											}
-											// Break current operations
-											else {
-												// Log
-												$log[] = 'NOT FOUND - OPERATIONS ABORTED!';
-											 	break;
 											}
 										}
 									}
@@ -394,6 +407,11 @@ class ControllerExtensionModification extends Controller {
 			// Log
 			$ocmod = new Log('ocmod.log');
 			$ocmod->write(implode("\n", $log));
+
+			if ($error_log) {
+				$ocmod = new Log('ocmod_error.log');
+				$ocmod->write(implode("\n", $error_log));
+			}
 
 			// Write all modification files
 			foreach ($modification as $key => $value) {
@@ -422,26 +440,13 @@ class ControllerExtensionModification extends Controller {
 			// Maintance mode back to original settings
 			$this->model_setting_setting->editSettingValue('config', 'config_maintenance', $maintenance);
 
-			// Do not return success message if refresh() was called with $data
-			if (!empty($data['redirect'])) {
-				$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			if (isset($this->request->get['modification_id'])) {
+				$this->response->redirect($this->url->link('extension/modification/edit', $this->getListUrlParams(array('modification_id' => $this->request->get['modification_id'])), true));
+			} else {
+				$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 			}
-
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-		//	$this->response->redirect($this->url->link(!empty($data['redirect']) ? $data['redirect'] : 'extension/modification', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -478,6 +483,29 @@ class ControllerExtensionModification extends Controller {
 			// Reverse sort the file array
 			rsort($files);
 
+			// Clear vqmod cache
+			$vqmod_path = substr(DIR_SYSTEM, 0, -7) . 'vqmod/';
+
+			if (file_exists($vqmod_path)) {
+				$vqmod_cache = glob($vqmod_path.'vqcache/vq*');
+
+				if ($vqmod_cache) {
+					foreach ($vqmod_cache as $file) {
+						if (file_exists($file)) {
+							@unlink($file);
+						}
+					}
+				}
+
+				if (file_exists($vqmod_path.'mods.cache')) {
+					@unlink($vqmod_path.'mods.cache');
+				}
+
+				if (file_exists($vqmod_path.'checked.cache')) {
+					@unlink($vqmod_path.'checked.cache');
+				}
+			}
+
 			// Clear all modification files
 			foreach ($files as $file) {
 				if ($file != DIR_MODIFICATION . 'index.html') {
@@ -494,21 +522,7 @@ class ControllerExtensionModification extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 		}
 
 		$this->getList();
@@ -526,21 +540,7 @@ class ControllerExtensionModification extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 		}
 
 		$this->getList();
@@ -558,21 +558,7 @@ class ControllerExtensionModification extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 		}
 
 		$this->getList();
@@ -582,63 +568,59 @@ class ControllerExtensionModification extends Controller {
 		$this->load->language('extension/modification');
 
 		if ($this->validate()) {
+
+			if (file_exists(DIR_LOGS . 'ocmod_error.log')) {
+				$handle = fopen(DIR_LOGS . 'ocmod_error.log', 'w+');
+
+				fclose($handle);
+			}
 			$handle = fopen(DIR_LOGS . 'ocmod.log', 'w+');
 
 			fclose($handle);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('extension/modification', $this->getListUrlParams(), true));
 		}
 
 		$this->getList();
 	}
 
 	protected function getList() {
+      	if (isset($this->request->get['filter_name'])) {
+			$filter_name = $this->request->get['filter_name'];
+		} else {
+			$filter_name = null;
+		}
+
+      	if (isset($this->request->get['filter_xml'])) {
+			$filter_xml = $this->request->get['filter_xml'];
+		} else {
+			$filter_xml = null;
+		}
+
+		if (isset($this->request->get['filter_author'])) {
+			$filter_author = $this->request->get['filter_author'];
+		} else {
+			$filter_author = null;
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'date_modified';
 		}
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'ASC';
+			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
 			$page = 1;
-		}
-
-		$url = '';
-
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}
-
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
-
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
 		}
 
 		$data['breadcrumbs'] = array();
@@ -653,24 +635,35 @@ class ControllerExtensionModification extends Controller {
 			'href' => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], true)
 		);
 
-		$data['refresh'] = $this->url->link('extension/modification/refresh', 'token=' . $this->session->data['token'] . $url, true);
-		$data['clear'] = $this->url->link('extension/modification/clear', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('extension/modification/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$url = $this->getListUrlParams();
+
+		$data['add'] = $this->url->link('extension/modification/add', $url, true);
+		$data['clear'] = $this->url->link('extension/modification/clear', $url, true);
+		$data['clear_log'] = $this->url->link('extension/modification/clearlog', $url, true);
+		$data['delete'] = $this->url->link('extension/modification/delete', $url, true);
+		$data['filter_action'] = $this->url->link('extension/modification', $url, true);
+		$data['refresh'] = $this->url->link('extension/modification/refresh', $url, true);
+		$data['reset_url'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], true);
 
 		$data['modifications'] = array();
 
 		$filter_data = array(
+			'filter_name'	  => $filter_name,
+			'filter_author'	  => $filter_author,
+			'filter_xml'	  => $filter_xml,
 			'sort'  => $sort,
 			'order' => $order,
 			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
 			'limit' => $this->config->get('config_limit_admin')
 		);
 
-		$modification_total = $this->model_extension_modification->getTotalModifications();
+		$modification_total = $this->model_extension_modification->getTotalModifications($filter_data);
 
 		$results = $this->model_extension_modification->getModifications($filter_data);
 
 		foreach ($results as $result) {
+			$url = $this->getListUrlParams(array('modification_id' => $result['modification_id']));
+
 			$data['modifications'][] = array(
 				'modification_id' => $result['modification_id'],
 				'name'            => $result['name'],
@@ -679,9 +672,11 @@ class ControllerExtensionModification extends Controller {
 				'status'          => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'date_added'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'link'            => $result['link'],
-				'enable'          => $this->url->link('extension/modification/enable', 'token=' . $this->session->data['token'] . '&modification_id=' . $result['modification_id'], true),
-				'disable'         => $this->url->link('extension/modification/disable', 'token=' . $this->session->data['token'] . '&modification_id=' . $result['modification_id'], true),
-				'enabled'         => $result['status']
+				'date_modified'      => (date('Ymd') == date('Ymd', strtotime($result['date_modified'])) ? date('G:i', strtotime($result['date_modified'])) : date($this->language->get('date_format_short'), strtotime($result['date_modified']))),
+				'edit'			  => $this->url->link('extension/modification/edit', $url, true),
+				'enable'          => $this->url->link('extension/modification/enable', $url, true),
+				'disable'         => $this->url->link('extension/modification/disable', $url, true),
+				'enabled'         => $result['status'],
 			);
 		}
 
@@ -698,6 +693,20 @@ class ControllerExtensionModification extends Controller {
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
 		$data['column_action'] = $this->language->get('column_action');
+
+      	$data['entry_name'] = $this->language->get('entry_name');
+		$data['entry_author'] = $this->language->get('entry_author');
+		$data['entry_xml'] = $this->language->get('entry_xml');
+
+		$data['tab_error'] = $this->language->get('tab_error');
+		$data['tab_files'] = $this->language->get('tab_files');
+
+		$data['column_date_modified'] = $this->language->get('column_date_modified');
+
+      	$data['button_add'] = $this->language->get('button_add');
+		$data['button_edit'] = $this->language->get('button_edit');
+		$data['button_filter'] = $this->language->get('button_filter');
+		$data['button_reset'] = $this->language->get('button_reset');
 
 		$data['button_refresh'] = $this->language->get('button_refresh');
 		$data['button_clear'] = $this->language->get('button_clear');
@@ -739,13 +748,26 @@ class ControllerExtensionModification extends Controller {
 			$url .= '&order=ASC';
 		}
 
+      	if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_author'])) {
+			$url .= '&filter_author=' . urlencode(html_entity_decode($this->request->get['filter_author'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_xml'])) {
+			$url .= '&filter_xml=' . urlencode(html_entity_decode($this->request->get['filter_xml'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
 		$data['sort_name'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=name' . $url, true);
+		$data['sort_date_modified'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=date_modified' . $url, true);
 		$data['sort_author'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=author' . $url, true);
-		$data['sort_version'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=version' . $url, true);
+		$data['sort_version'] = $this->url->link('extension/version', 'token=' . $this->session->data['token'] . '&sort=author' . $url, true);
 		$data['sort_status'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=status' . $url, true);
 		$data['sort_date_added'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . '&sort=date_added' . $url, true);
 
@@ -759,20 +781,64 @@ class ControllerExtensionModification extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
+      	if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_author'])) {
+			$url .= '&filter_author=' . urlencode(html_entity_decode($this->request->get['filter_author'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_xml'])) {
+			$url .= '&filter_xml=' . urlencode(html_entity_decode($this->request->get['filter_xml'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		$pagination = new Pagination();
 		$pagination->total = $modification_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('extension/modification', $this->getListUrlParams(array('page' => '{page}')), true);
 
 		$data['pagination'] = $pagination->render();
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($modification_total) ? (($page - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($modification_total - $this->config->get('config_limit_admin'))) ? $modification_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $modification_total, ceil($modification_total / $this->config->get('config_limit_admin')));
 
 		$data['sort'] = $sort;
+
+		$data['filter_name'] = $filter_name;
+		$data['filter_author'] = $filter_author;
+		$data['filter_xml'] = $filter_xml;
+
+		$data['modified_files'] = array();
+
+		$modified_files = self::modifiedFiles(DIR_MODIFICATION);
+
+		$modification_files = $this->getModificationXmlFiles();
+
+		foreach($modified_files as $modified_file) {
+			if(isset($modification_files[$modified_file])){
+				$modifications = $modification_files[$modified_file];
+			} else {
+				$modifications = array();
+			}
+
+			$data['modified_files'][] = array(
+				'file' => $modified_file,
+				'modifications' => $modifications
+			);
+		}
+
 		$data['order'] = $order;
 
 		// Log
+  		$error_file = DIR_LOGS . 'ocmod_error.log';
+
+		if (file_exists($error_file)) {
+			$data['error_log'] = htmlentities(file_get_contents($error_file, FILE_USE_INCLUDE_PATH, null));
+		} else {
+			$data['error_log'] = '';
+		}
+
 		$file = DIR_LOGS . 'ocmod.log';
 
 		if (file_exists($file)) {
@@ -781,14 +847,459 @@ class ControllerExtensionModification extends Controller {
 			$data['log'] = '';
 		}
 
-		$data['clear_log'] = $this->url->link('extension/modification/clearlog', 'token=' . $this->session->data['token'], true);
+		$data['header'] = $this->load->controller('common/header');
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['footer'] = $this->load->controller('common/footer');
+
+		$this->response->setOutput($this->load->view('extension/modification_list', $data));
+	}
+
+
+	public function add() {
+		$this->load->language('extension/modification');
+
+		$this->load->model('extension/modification');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$xml = html_entity_decode($this->request->post['xml'], ENT_QUOTES, 'UTF-8');
+
+			$dom = new DOMDocument('1.0', 'UTF-8');
+			$dom->preserveWhiteSpace = false;
+			$dom->loadXml($xml);
+
+			$data = array(
+				'version' => '',
+				'author' => '',
+				'link' => '',
+				'status' => 1
+			);
+
+			$data['xml'] = $xml;
+
+			$data['name'] = $dom->getElementsByTagName('name')->item(0)->textContent;
+
+			$data['code'] = $dom->getElementsByTagName('code')->item(0)->textContent;
+
+			if ($dom->getElementsByTagName('version')->length) {
+				$data['version'] = $dom->getElementsByTagName('version')->item(0)->textContent;
+			}
+
+			if ($dom->getElementsByTagName('author')->length) {
+				$data['author'] = $dom->getElementsByTagName('author')->item(0)->textContent;
+			}
+
+			$this->model_extension_modification->addModification($data);
+
+			$modification_id = $this->db->getLastId();
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$this->response->redirect($this->url->link('extension/modification/edit', $this->getListUrlParams(array('modification_id' => $modification_id)), true));
+		}
+
+		$this->getForm();
+	}
+
+	public function edit() {
+		$this->load->language('extension/modification');
+
+		$this->load->model('extension/modification');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !empty($this->request->get['modification_id']) && $this->validateForm()) {
+			$modification_id = $this->request->get['modification_id'];
+
+			$xml = html_entity_decode($this->request->post['xml'], ENT_QUOTES, 'UTF-8');
+
+			$dom = new DOMDocument('1.0', 'UTF-8');
+			$dom->preserveWhiteSpace = false;
+			$dom->loadXml($xml);
+
+			$data = array();
+
+			$data['xml'] = $xml;
+
+			$data['name'] = $dom->getElementsByTagName('name')->item(0)->textContent;
+
+			$data['code'] = $dom->getElementsByTagName('code')->item(0)->textContent;
+
+			if ($dom->getElementsByTagName('version')->length) {
+				$data['version'] = $dom->getElementsByTagName('version')->item(0)->textContent;
+			} else {
+				$data['version'] = '';
+			}
+
+			if ($dom->getElementsByTagName('author')->length) {
+				$data['author'] = $dom->getElementsByTagName('author')->item(0)->textContent;
+			} else {
+				$data['author'] = '';
+			}
+
+			if ($dom->getElementsByTagName('link')->length) {
+				$data['link'] = $dom->getElementsByTagName('link')->item(0)->textContent;
+			} else {
+				$data['link'] = '';
+			}
+
+			$this->model_extension_modification->editModification($modification_id, $data);
+
+			$url = $this->getListUrlParams(array('modification_id' => $modification_id));
+
+			if (isset($this->request->get['refresh'])) {
+				$this->response->redirect($this->url->link('extension/modification/refresh', $url, true));
+			}
+
+			if ($this->db->countAffected()) {
+				$this->session->data['success'] = $this->language->get('text_success');
+
+				$this->response->redirect($this->url->link('extension/modification/edit', $url, true));
+			}
+		}
+
+		$this->getForm();
+	}
+
+	public function getForm() {
+		$data['token'] = $this->session->data['token'];
+
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_enabled'] = $this->language->get('text_enabled');
+		$data['text_disabled'] = $this->language->get('text_disabled');
+
+		$data['button_save'] = $this->language->get('button_save');
+		$data['button_refresh'] = $this->language->get('button_refresh');
+		$data['button_cancel'] = $this->language->get('button_cancel');
+
+		if (isset($this->error['warning'])) {
+			$data['error_warning'] = $this->error['warning'];
+		} elseif (!empty($this->error)) {
+			$data['error_warning'] = $this->language->get('error_warning');
+		} else {
+			$data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$data['success'] = false;
+		}
+
+		if (isset($this->error['xml'])) {
+			$data['error_xml'] = $this->error['xml'];
+		}
+
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('heading_title'),
+			'href' => $this->url->link('extension/modification', $this->getListUrlParams(), true)
+		);
+
+		if (isset($this->request->get['modification_id'])) {
+			$modification_info = $this->model_extension_modification->getModification($this->request->get['modification_id']);
+			if (!$modification_info) exit;
+			
+			$data['text_form'] = sprintf($this->language->get('text_edit'), $modification_info['name']);
+
+			$data['action'] = $this->url->link('extension/modification/edit', '&modification_id=' . $modification_info['modification_id'] . '&token=' . $this->session->data['token'], true);
+
+			$data['refresh'] = $this->url->link('extension/modification/edit', '&modification_id=' . $modification_info['modification_id'] . '&refresh=1&token=' . $this->session->data['token'], true);
+
+			$this->document->setTitle($modification_info['name'] . ' » ' . $data['heading_title']);
+		} else {
+			$data['text_form'] = $this->language->get('text_add');
+
+			$data['refresh'] = false;
+
+			$data['action'] = $this->url->link('extension/modification/add', 'token=' . $this->session->data['token'], true);
+
+			$this->document->setTitle($data['heading_title']);
+		}
+
+		$data['cancel'] = $this->url->link('extension/modification', $this->getListUrlParams(), true);
+
+		$data['modification'] = array();
+
+		if (!empty($modification_info)) {
+			$data['modification']['status'] = $modification_info['status'];
+		} else {
+			$data['modification']['status'] = 0;
+		}
+
+		if (isset($this->request->post['xml'])) {
+			$data['modification']['xml'] = html_entity_decode($this->request->post['xml'], ENT_QUOTES, 'UTF-8');
+		} elseif (!empty($modification_info)) {
+			$data['modification']['xml'] = $modification_info['xml'];
+		} else {
+			$data['modification']['xml'] = <<<'EOT'
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name></name>
+  <code></code>
+  <version></version>
+  <author></author>
+  <link></link>
+<!--
+<file path="">
+	<operation>
+      <search index="0"></search>
+      <add position="replace"></add>
+    </operation>
+  </file>
+-->
+</modification>
+EOT;
+		}
+
+		$this->document->addStyle('view/javascript/codemirror/lib/codemirror.css');
+		$this->document->addScript('view/javascript/codemirror/lib/codemirror.js');
+		$this->document->addScript('view/javascript/codemirror/mode/xml/xml.js');
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('extension/modification', $data));
+		$this->response->setOutput($this->load->view('extension/modification_form', $data));
 	}
+
+	private function validateForm() {
+		if (!$this->user->hasPermission('modify', 'extension/modification')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		$error = false;
+
+		// Required
+		if (empty($this->request->post['xml'])) {
+			$error = $this->language->get('error_required');
+		}
+
+		// 2. Validate XML
+		if (!$error) {
+			libxml_use_internal_errors(true);
+
+			$dom = new DOMDocument('1.0', 'UTF-8');
+
+			if(!$dom->loadXml(html_entity_decode($this->request->post['xml'], ENT_QUOTES, 'UTF-8'))){
+
+			    foreach (libxml_get_errors() as $error) {
+			        $msg = '';
+
+			        switch ($error->level) {
+			            case LIBXML_ERR_WARNING :
+			                $msg .= "Warning $error->code: ";
+			                break;
+			            case LIBXML_ERR_ERROR :
+			                $msg .= "Error $error->code: ";
+			                break;
+			            case LIBXML_ERR_FATAL :
+			                $msg .= "Fatal Error $error->code: ";
+			                break;
+			        }
+
+			        $msg .= trim ( $error->message ) . "\nLine: $error->line";
+
+			        $error = $msg;
+			    }
+
+			    libxml_clear_errors();
+			}
+
+			libxml_use_internal_errors(false);
+		}
+
+		// 3. Required tags
+		if (!$error && (!$dom->getElementsByTagName('name') || $dom->getElementsByTagName('name')->length == 0 || $dom->getElementsByTagName('name')->item(0)->textContent == '')) {
+			$error = $this->language->get('error_name');
+		}
+
+		if (!$error && (!$dom->getElementsByTagName('code') || $dom->getElementsByTagName('code')->length == 0 || $dom->getElementsByTagName('code')->item(0)->textContent == '')) {
+			$error = $this->language->get('error_code');
+		}
+
+		// 4. Check code isn't duplicate
+		if (!$error) {
+			$code = $dom->getElementsByTagName('code')->item(0)->textContent;
+
+			$this->load->model('extension/modification');
+			$modification_info = $this->model_extension_modification->getModificationByCode($code);
+
+			if ($modification_info && (!isset($this->request->get['modification_id']) || $modification_info['modification_id'] != $this->request->get['modification_id'])) {
+				$error = sprintf($this->language->get('error_exists'), $modification_info['name'], $modification_info['code']);
+			}
+		}
+
+		if ($error) {
+			$this->error['xml'] = $error;
+		}
+
+		return !$this->error;
+	}
+
+	static function modifiedFiles($dir, $dirLen = 0) {
+		$tree = glob(rtrim($dir, '/') . '/*');
+		if (!$dirLen) {
+			$dirLen = strlen($dir);
+		}
+		$files = array();
+
+	    if (is_array($tree)) {
+	        foreach($tree as $file) {
+	        	if ($file == $dir . 'index.html') {
+					continue;
+				} elseif (is_file($file)) {
+	                $files[] = substr($file, $dirLen);
+	            } elseif (is_dir($file)) {
+	                $files = array_merge($files, self::modifiedFiles($file, $dirLen));
+	            }
+	        }
+	    }
+
+	    return $files;
+	}
+
+	protected function getListUrlParams(array $params = array()) {
+		if (!isset($params['token'])) {
+			$params['token'] = $this->session->data['token'];
+		}
+
+		if (isset($params['sort'])) {
+			$params['sort'] = $params['sort'];
+		} elseif (isset($this->request->get['sort'])) {
+			$params['sort'] = $this->request->get['sort'];
+		}
+
+		if (isset($params['order'])) {
+			$params['order'] = $params['order'];
+		} elseif (isset($this->request->get['order'])) {
+			$params['order'] = $this->request->get['order'];
+		}
+
+		if (isset($params['filter_name'])) {
+			$params['filter_name'] = urlencode(html_entity_decode($params['filter_name'], ENT_QUOTES, 'UTF-8'));
+		} elseif (isset($this->request->get['filter_name'])) {
+			$params['filter_name'] = urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($params['filter_author'])) {
+			$params['filter_author'] = urlencode(html_entity_decode($params['filter_author'], ENT_QUOTES, 'UTF-8'));
+		} elseif (isset($this->request->get['filter_author'])) {
+			$params['filter_author'] = urlencode(html_entity_decode($this->request->get['filter_author'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($params['filter_xml'])) {
+			$params['filter_xml'] = urlencode(html_entity_decode($params['filter_xml'], ENT_QUOTES, 'UTF-8'));
+		} elseif (isset($this->request->get['filter_xml'])) {
+			$params['filter_xml'] = urlencode(html_entity_decode($this->request->get['filter_xml'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($params['page'])) {
+			$params['page'] = $params['page'];
+		} elseif (isset($this->request->get['page'])) {
+			$params['page'] = $this->request->get['page'];
+		}
+
+		$paramsJoined = array();
+
+		foreach($params as $param => $value) {
+			$paramsJoined[] = "$param=$value";
+		}
+
+		return implode('&', $paramsJoined);
+	}
+
+	protected function getModificationXmlFiles() {
+		$return = array();
+
+		$baseLen = strlen(substr(DIR_SYSTEM, 0, -7));
+
+		$xml = array();
+
+		$xml[] = file_get_contents(DIR_SYSTEM . 'modification.xml');
+
+		$files = glob(DIR_SYSTEM . '*.ocmod.xml');
+
+		if ($files) {
+			foreach ($files as $file) {
+				$xml[] = file_get_contents($file);
+			}
+		}
+
+		$results = $this->model_extension_modification->getModifications();
+
+		foreach ($results as $result) {
+			if ($result['status']) {
+				$xml[] = $result['xml'];
+			}
+		}
+
+		foreach ($xml as $xml) {
+			$dom = new DOMDocument('1.0', 'UTF-8');
+			$dom->preserveWhiteSpace = false;
+			$dom->loadXml($xml);
+
+			$files = $dom->getElementsByTagName('modification')->item(0)->getElementsByTagName('file');
+
+			foreach ($files as $file) {
+				$operations = $file->getElementsByTagName('operation');
+
+				$files = explode(',', $file->getAttribute('path'));
+
+				foreach ($files as $file) {
+					$path = '';
+
+					// Get the full path of the files that are going to be used for modification
+					if (substr($file, 0, 7) == 'catalog') {
+						$path = DIR_CATALOG . str_replace('../', '', substr($file, 8));
+					}
+
+					if (substr($file, 0, 5) == 'admin') {
+						$path = DIR_APPLICATION . str_replace('../', '', substr($file, 6));
+					}
+
+					if (substr($file, 0, 6) == 'system') {
+						$path = DIR_SYSTEM . str_replace('../', '', substr($file, 7));
+					}
+
+					if ($path) {
+						$files = glob($path, GLOB_BRACE);
+
+						if ($files) {
+							foreach ($files as $file) {
+								$file = substr($file, $baseLen);
+
+								if (!isset($return[$file])) {
+									$return[$file] = array();
+								}
+								
+								if ($dom->getElementsByTagName('author')->length) {
+									$author = $dom->getElementsByTagName('author')->item(0)->textContent;
+								} else {
+									$author = '';
+								}
+
+								$return[$file][] = array(
+									'code' => $dom->getElementsByTagName('code')->item(0)->textContent,
+									'name' => $dom->getElementsByTagName('name')->item(0)->textContent,
+									'author' => $author
+								);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return $return;
+	}
+
 
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {

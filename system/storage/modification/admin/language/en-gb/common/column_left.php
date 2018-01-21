@@ -1,4 +1,8 @@
 <?php
+
+// Uninstaller
+$_['heading_title_uninstaller'] = 'Extension Uninstaller';
+
 // Text
 $_['text_affiliate']                 = 'Affiliates';
 $_['text_api']                       = 'API';
@@ -6,6 +10,9 @@ $_['text_attribute']                 = 'Attributes';
 $_['text_attribute_group']           = 'Attribute Groups';
 $_['text_backup']                    = 'Backup / Restore';
 $_['text_import_yml']           = 'Import YML';
+
+$_['text_export_import']             = 'Export / Import';
+			
 $_['text_banner']                    = 'Banners';
 $_['text_catalog']                   = 'Catalog';
 $_['text_category']                  = 'Categories';
