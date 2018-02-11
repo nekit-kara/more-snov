@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <item>
+        <id>85</id>
+        <name>Marpessa</name>
+        <parent>78</parent>
+    </item>
+    <item>
+        <id>141</id>
+        <name>OdaModa</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>219</id>
+        <name>Valteryteens цифровая печать</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>135</id>
+        <name>Бамбук однотонный (арт. BS)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>90</id>
+        <name>Бамбуковое волокно</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>128</id>
+        <name>Бытовая химия</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>107</id>
+        <name>Бязь</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>17</id>
+        <name>Вышивка, гипюр</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>14</id>
+        <name>Гобелен сатин (арт. GG)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>84</id>
+        <name>Декоративные подушки (DP)</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>235</id>
+        <name>Детская кроватка</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>192</id>
+        <name>Детские носовые платки</name>
+        <parent>191</parent>
+    </item>
+    <item>
+        <id>249</id>
+        <name>Детский поплин (арт. DL)</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>50</id>
+        <name>Для детей</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>114</id>
+        <name>Домашний костюм</name>
+        <parent>78</parent>
+    </item>
+    <item>
+        <id>78</id>
+        <name>Домашняя одежда</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>13</id>
+        <name>Жаккард</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>193</id>
+        <name>Женские носовые платки</name>
+        <parent>191</parent>
+    </item>
+    <item>
+        <id>130</id>
+        <name>Жидкие средства для стирки белья</name>
+        <parent>128</parent>
+    </item>
+    <item>
+        <id>181</id>
+        <name>Коврики</name>
+        <parent>109</parent>
+    </item>
+    <item>
+        <id>109</id>
+        <name>Коврики для ванной</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>228</id>
+        <name>Коврики для ванной ROSEBERRY</name>
+        <parent>109</parent>
+    </item>
+    <item>
+        <id>236</id>
+        <name>Коврики для ванной Valtery</name>
+        <parent>109</parent>
+    </item>
+    <item>
+        <id>131</id>
+        <name>Кондиционеры для белья</name>
+        <parent>128</parent>
+    </item>
+    <item>
+        <id>24</id>
+        <name>КПБ Бамбуковое волокно OB</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>25</id>
+        <name>КПБ Бамбуковое волокно жаккард (OJ)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>168</id>
+        <name>КПБ Бязь 130 гр</name>
+        <parent>107</parent>
+    </item>
+    <item>
+        <id>169</id>
+        <name>КПБ Бязь ГОСТ</name>
+        <parent>107</parent>
+    </item>
+    <item>
+        <id>51</id>
+        <name>КПБ Детские бязь (арт. ДБ)</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>52</id>
+        <name>КПБ Детские поплин (арт. С)</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>113</id>
+        <name>КПБ Детский сатин (арт. DS)</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>42</id>
+        <name>КПБ Жаккард (арт. F)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>72</id>
+        <name>КПБ Жаккард с крупным рисунком (арт.TJ-B)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>43</id>
+        <name>КПБ Жаккард с фотопечатью (арт.T)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>34</id>
+        <name>КПБ Королевский сатин (арт RS)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>182</id>
+        <name>КПБ Лен с хлопком (арт. LE)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>40</id>
+        <name>КПБ Микрофибра (арт.MF)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>49</id>
+        <name>КПБ Натуральный хлопок жаккард OCJ</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>26</id>
+        <name>КПБ Органик Модал (OMP)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>41</id>
+        <name>КПБ Поликоттон (PC)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>22</id>
+        <name>КПБ Поплин (арт. A)</name>
+        <parent>15</parent>
+    </item>
+    <item>
+        <id>23</id>
+        <name>КПБ Поплин (арт. П)</name>
+        <parent>15</parent>
+    </item>
+    <item>
+        <id>35</id>
+        <name>КПБ Сатин печатный (арт. С)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>36</id>
+        <name>КПБ Сатин печатный (арт.B)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>29</id>
+        <name>КПБ Сатин с вышивкой (арт. 100)</name>
+        <parent>17</parent>
+    </item>
+    <item>
+        <id>30</id>
+        <name>КПБ Сатин с вышивкой (арт. D)</name>
+        <parent>17</parent>
+    </item>
+    <item>
+        <id>31</id>
+        <name>КПБ Сатин с вышивкой с отделкой гобеленом (арт. 110)</name>
+        <parent>17</parent>
+    </item>
+    <item>
+        <id>37</id>
+        <name>КПБ Сатин с фотопечатью (арт. G)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>27</id>
+        <name>КПБ Тенсел (арт. E)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>93</id>
+        <name>КПБ Тенсел (арт. TP)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>28</id>
+        <name>КПБ Тенсел жаккард с гипюром</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>44</id>
+        <name>КПБ Тканный жаккард с вышивкой  (арт. K)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>45</id>
+        <name>КПБ Тканный жаккард с вышивкой (арт. 220)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>32</id>
+        <name>КПБ Хлопок сатин с вышивкой (арт.ES) </name>
+        <parent>17</parent>
+    </item>
+    <item>
+        <id>46</id>
+        <name>КПБ Шелковый Жаккард (арт SJ)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>47</id>
+        <name>КПБ Шелковый жаккард с вышивкой (арт. L)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>38</id>
+        <name>КПБ Шелковый сатин (арт SDS)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>185</id>
+        <name>Матрацы</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>186</id>
+        <name>Матрацы ПИЛЛОУ</name>
+        <parent>185</parent>
+    </item>
+    <item>
+        <id>194</id>
+        <name>Мужские носовые платки</name>
+        <parent>191</parent>
+    </item>
+    <item>
+        <id>239</id>
+        <name>Набор для кухни</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>212</id>
+        <name>Наборы для сауны</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>176</id>
+        <name>Наволочки</name>
+        <parent>174</parent>
+    </item>
+    <item>
+        <id>180</id>
+        <name>Наволочки сатин (арт. NC)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>207</id>
+        <name>Наволочки сатин печатные (арт. NCT)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>208</id>
+        <name>Наволочки сатин печатные (арт. NCT)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>178</id>
+        <name>Наволочки софткоттон (арт. NSC)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>184</id>
+        <name>Наволочки софткоттон с гипюром (арт. NMG)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>233</id>
+        <name>Наволочки стеганные (арт. STNP)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>234</id>
+        <name>Наволочки стеганные (арт. STNP)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>224</id>
+        <name>Наволочки трикотажные (арт. NT)</name>
+        <parent>176</parent>
+    </item>
+    <item>
+        <id>4</id>
+        <name>Наматрасники</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>16</id>
+        <name>Натуральные волокна</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>6</id>
+        <name>Одеяла</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>146</id>
+        <name>Одеяла INCALPACA</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>94</id>
+        <name>Одеяла алоэ</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>63</id>
+        <name>Одеяла бамбук</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>244</id>
+        <name>Одеяла Вальтери</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>247</id>
+        <name>Одеяла детские байковые</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>67</id>
+        <name>Одеяла детские ПИЛЛОУ</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>189</id>
+        <name>Одеяла детские СН-Текстиль</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>96</id>
+        <name>Одеяла искусственные</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>97</id>
+        <name>Одеяла кукуруза</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>95</id>
+        <name>Одеяла лён</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>87</id>
+        <name>Одеяла Микрофибра-Бамбук</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>99</id>
+        <name>Одеяла морские водоросли</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>65</id>
+        <name>Одеяла пуховые</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>122</id>
+        <name>Одеяла тенсел</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>246</id>
+        <name>Одеяла хлопковые</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>64</id>
+        <name>Одеяла шелк</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>66</id>
+        <name>Одеяла шерсть</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>251</id>
+        <name>Одеяла шерстяные</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>98</id>
+        <name>Одеяла эвкалипт</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>248</id>
+        <name>Одеяло Полушерстяные</name>
+        <parent>6</parent>
+    </item>
+    <item>
+        <id>174</id>
+        <name>Отдельные предметы</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>33</id>
+        <name>Перкаль с гипюром</name>
+        <parent>17</parent>
+    </item>
+    <item>
+        <id>191</id>
+        <name>Платки носовые</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>116</id>
+        <name>Плед INCALPACA (арт.PP)</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>133</id>
+        <name>Плед вязанный</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>115</id>
+        <name>Пледы</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>226</id>
+        <name>Пледы CASA LUSSO</name>
+        <parent>116</parent>
+    </item>
+    <item>
+        <id>230</id>
+        <name>Пледы CASA LUSSO</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>217</id>
+        <name>Пледы INCALPACA жаккард (арт. PJ)</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>222</id>
+        <name>Пледы INCALPACA жаккард (арт. PJ)</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>216</id>
+        <name>Пледы INCALPACA Пима хлопок 100% (арт. PH)</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>218</id>
+        <name>Пледы INCALPACA Пима хлопок 100% (арт. PH)</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>243</id>
+        <name>Пледы Вальтери</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>250</id>
+        <name>Пледы хлопковые</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>245</id>
+        <name>Пледы шерстяные</name>
+        <parent>115</parent>
+    </item>
+    <item>
+        <id>175</id>
+        <name>Пододеяльники</name>
+        <parent>174</parent>
+    </item>
+    <item>
+        <id>179</id>
+        <name>Пододеяльники сатин (арт. PDC)</name>
+        <parent>175</parent>
+    </item>
+    <item>
+        <id>206</id>
+        <name>Пододеяльники сатин печатные (арт. PDST)</name>
+        <parent>175</parent>
+    </item>
+    <item>
+        <id>177</id>
+        <name>Пододеяльники софткоттон (арт. PSC)</name>
+        <parent>175</parent>
+    </item>
+    <item>
+        <id>7</id>
+        <name>Подушки</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>58</id>
+        <name>Подушки бамбук</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>190</id>
+        <name>Подушки детские ПИЛЛОУ</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>62</id>
+        <name>Подушки детские СН-Текстиль</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>100</id>
+        <name>Подушки искусственные</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>86</id>
+        <name>Подушки микрофибра-бамбук</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>103</id>
+        <name>Подушки ортопедические</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>101</id>
+        <name>Подушки пухо-перовая смесь</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>60</id>
+        <name>Подушки пуховые</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>123</id>
+        <name>Подушки тенсел</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>59</id>
+        <name>Подушки шелк</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>61</id>
+        <name>Подушки шерсть</name>
+        <parent>7</parent>
+    </item>
+    <item>
+        <id>83</id>
+        <name>Покрывалa CASANDRA</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>9</id>
+        <name>Покрывала</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>79</id>
+        <name>Покрывала (Турция)</name>
+        <parent>55</parent>
+    </item>
+    <item>
+        <id>80</id>
+        <name>Покрывала (Турция)</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>55</id>
+        <name>Покрывала 100</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>56</id>
+        <name>Покрывала 110</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>57</id>
+        <name>Покрывала 220</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>82</id>
+        <name>Покрывала CASANDRA</name>
+        <parent>54</parent>
+    </item>
+    <item>
+        <id>142</id>
+        <name>Покрывала OdaModa</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>54</id>
+        <name>Покрывала PN220</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>221</id>
+        <name>Покрывала PPL</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>81</id>
+        <name>Покрывала TAC</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>220</id>
+        <name>Покрывала XJ</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>144</id>
+        <name>Покрывала жаккардовые (арт. PNJC)</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>92</id>
+        <name>Покрывала жаккардовые LP</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>102</id>
+        <name>Покрывала сатиновые 3D</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>173</id>
+        <name>Покрывала софткоттон (арт. PMO)</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>145</id>
+        <name>Покрывала софткоттон (арт. PMP)</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>53</id>
+        <name>Покрывала стеганные</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>231</id>
+        <name>Покрывала трикотажные</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>238</id>
+        <name>Покрывала хлопковые (арт. PPH)</name>
+        <parent>9</parent>
+    </item>
+    <item>
+        <id>121</id>
+        <name>Полисатин 3D (арт. SF)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>110</id>
+        <name>Полотенца </name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>164</id>
+        <name>Полотенца IRYA ANTIK</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>187</id>
+        <name>Полотенца IRYA BLENDA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>195</id>
+        <name>Полотенца IRYA CLASSIS</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>156</id>
+        <name>Полотенца IRYA CLASSY</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>152</id>
+        <name>Полотенца IRYA DAISY</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>149</id>
+        <name>Полотенца IRYA DAMLA</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>154</id>
+        <name>Полотенца IRYA DERIN</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>148</id>
+        <name>Полотенца IRYA DREAMS</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>151</id>
+        <name>Полотенца IRYA DURU-SPA</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>162</id>
+        <name>Полотенца IRYA FERONIA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>165</id>
+        <name>Полотенца IRYA INFINITY</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>170</id>
+        <name>Полотенца IRYA LOYA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>171</id>
+        <name>Полотенца IRYA MABELLA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>172</id>
+        <name>Полотенца IRYA MOLLY</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>150</id>
+        <name>Полотенца IRYA NATURE</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>161</id>
+        <name>Полотенца IRYA NOVA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>163</id>
+        <name>Полотенца IRYA PANDORA</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>153</id>
+        <name>Полотенца IRYA SEASIDE-SPA</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>166</id>
+        <name>Полотенца IRYA SENSE</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>167</id>
+        <name>Полотенца IRYA SHALLA</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>160</id>
+        <name>Полотенца IRYA TIFFANY</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>147</id>
+        <name>Полотенца IRYA WELLA</name>
+        <parent>139</parent>
+    </item>
+    <item>
+        <id>139</id>
+        <name>Полотенца IRYA бамбук</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>210</id>
+        <name>Полотенца IRYA Новогодний набор</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>155</id>
+        <name>Полотенца IRYA с печатью</name>
+        <parent>111</parent>
+    </item>
+    <item>
+        <id>111</id>
+        <name>Полотенца IRYA хлопок</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>229</id>
+        <name>Полотенца ROSEBERRY</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>202</id>
+        <name>Полотенца Valtery Bamboo CL</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>214</id>
+        <name>Полотенца Valtery Bamboo PR</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>215</id>
+        <name>Полотенца Valtery Emily</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>201</id>
+        <name>Полотенца Valtery Miranda</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>211</id>
+        <name>Полотенца Valtery Rosy</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>199</id>
+        <name>Полотенца Valtery Seashells</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>200</id>
+        <name>Полотенца Valtery Wellness</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>124</id>
+        <name>Полотенца вафельные</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>125</id>
+        <name>Полотенца вафельные</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>126</id>
+        <name>Полотенца вафельные</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>159</id>
+        <name>Полотенца вафельные</name>
+        <parent>127</parent>
+    </item>
+    <item>
+        <id>127</id>
+        <name>Полотенца кухонные</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>158</id>
+        <name>Полотенца кухонные IRYA</name>
+        <parent>127</parent>
+    </item>
+    <item>
+        <id>241</id>
+        <name>Полотенца кухонные Valtery</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>198</id>
+        <name>Полотенца махровые Вальтери</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>196</id>
+        <name>Полотенца махровые Япония</name>
+        <parent>110</parent>
+    </item>
+    <item>
+        <id>213</id>
+        <name>Полотенца мультибренд</name>
+        <parent>198</parent>
+    </item>
+    <item>
+        <id>237</id>
+        <name>Поплин (арт. AP)</name>
+        <parent>15</parent>
+    </item>
+    <item>
+        <id>132</id>
+        <name>Порошки стиральные для белья</name>
+        <parent>128</parent>
+    </item>
+    <item>
+        <id>2</id>
+        <name>Постельное белье</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>77</id>
+        <name>Постельное белье в кроватку (арт. DK)</name>
+        <parent>50</parent>
+    </item>
+    <item>
+        <id>227</id>
+        <name>Прихватки</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>20</id>
+        <name>Простыни</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>209</id>
+        <name>Простыни без резинки Сатин печатные (арт. PCR)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>203</id>
+        <name>Простыни на резинки Сатин печатные (арт. PCT-R)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>232</id>
+        <name>Простынь АкваСтоп</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>91</id>
+        <name>Простынь без резинки (Сатин)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>137</id>
+        <name>Простынь махровая</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>140</id>
+        <name>Простынь махровая без резинки</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>136</id>
+        <name>Простынь на резинке (бамбук)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>75</id>
+        <name>Простынь на резинке (Джерси)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>73</id>
+        <name>Простынь на резинке (микрофибра)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>74</id>
+        <name>Простынь на резинке (сатин)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>119</id>
+        <name>Простынь на резинке (Софткоттон)</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>138</id>
+        <name>Простынь трикотажная</name>
+        <parent>20</parent>
+    </item>
+    <item>
+        <id>3</id>
+        <name>Разное</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>242</id>
+        <name>Руковичка-прихватка</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>104</id>
+        <name>Сатин</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>197</id>
+        <name>Сатин однотонный (арт.LS)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>89</id>
+        <name>Сатин однотонный (арт.OD)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>39</id>
+        <name>САТИН печатный</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>157</id>
+        <name>Сатин печатный (арт. СL)</name>
+        <parent>18</parent>
+    </item>
+    <item>
+        <id>120</id>
+        <name>Сатин-жаккард (арт. JC)</name>
+        <parent>13</parent>
+    </item>
+    <item>
+        <id>18</id>
+        <name>Сатиновое плетение</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>204</id>
+        <name>Сидушка для стула</name>
+        <parent>205</parent>
+    </item>
+    <item>
+        <id>5</id>
+        <name>Скатерти</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>134</id>
+        <name>Скатерти Тефлон</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>71</id>
+        <name>Скатерть жаккард</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>68</id>
+        <name>Скатерть лен</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>223</id>
+        <name>Скатерть печатная</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>70</id>
+        <name>Скатерть с вышивкой</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>69</id>
+        <name>Скатерть с гипюром</name>
+        <parent>5</parent>
+    </item>
+    <item>
+        <id>118</id>
+        <name>Софткоттон однотонный (арт. MO)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>143</id>
+        <name>Софткоттон печатный (арт. MР)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>183</id>
+        <name>Софткоттон с гипюром (арт. MG)</name>
+        <parent>19</parent>
+    </item>
+    <item>
+        <id>129</id>
+        <name>Средства для мытья посуды</name>
+        <parent>128</parent>
+    </item>
+    <item>
+        <id>240</id>
+        <name>Фартуки</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>205</id>
+        <name>Фартуки и сидушки</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>188</id>
+        <name>Фланель (арт. ZJ)</name>
+        <parent>16</parent>
+    </item>
+    <item>
+        <id>108</id>
+        <name>Халаты IRYA</name>
+        <parent>78</parent>
+    </item>
+    <item>
+        <id>225</id>
+        <name>Халаты ROSEBERRY</name>
+        <parent>78</parent>
+    </item>
+    <item>
+        <id>15</id>
+        <name>Хлопок полотняного плетения</name>
+        <parent>2</parent>
+    </item>
+    <item>
+        <id>112</id>
+        <name>Шторки для душа</name>
+        <parent>0</parent>
+    </item>
+    <item>
+        <id>19</id>
+        <name>Эконом</name>
+        <parent>2</parent>
+    </item>
+</response>
