@@ -17,7 +17,7 @@
       <h1><?php echo $heading_title; ?></h1>
       <?php if($bigshop_refine_categories == 1) { ?>
       <?php if ($categories) { ?>
-      <h3><?php echo $text_refine; ?></h3>
+<!--      <h3>--><?php //echo $text_refine; ?><!--</h3>-->
       <?php if($bigshop_refine_categories_images == 1) { ?>
       <div class="category-list-thumb row" style="margin-bottom:0px;">
         <?php $counter = 0; foreach ($categories as $category) {?>

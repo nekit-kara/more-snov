@@ -1357,7 +1357,7 @@ margin-bottom:10px
 
 .category-list-thumb>div img {
 max-width:100%!important;
-border:1px solid #ddd;
+/*border:1px solid #ddd;*/
 padding:3px
 }
 

@@ -1272,4 +1272,9 @@ textarea.form-control_custom {
 .special_carousel .b-product-size {
   padding-left: 0px;
 }
-
+#content h1:first-child {
+  margin-bottom: 10px;
+}
+#column-left .typeh3:first-child {
+  display: none;
+}
