@@ -10,6 +10,14 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * This is the model class for table "product_image".
+ *
+ * @property integer $product_image_id
+ * @property integer $product_id
+ * @property string $image
+ * @property integer $sort_order
+ */
 class ProductImage extends Model
 {
     protected $table = 'product_image';
