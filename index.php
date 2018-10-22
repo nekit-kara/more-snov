@@ -7,6 +7,11 @@ if (is_file('config.php')) {
 	require_once('config.php');
 }
 
+// Bootstrapping eloquent
+if (is_file('bootstrap.php')) {
+    require_once('bootstrap.php');
+}
+
 // Install
 if (!defined('DIR_APPLICATION')) {
 	header('Location: install/index.php');

@@ -1,0 +1,22 @@
+{
+    "name": "imp-f/more-snov",
+    "description": "Shopping cart built on opencart",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ilya Karachov",
+            "email": "ilyakarachov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "5.3.3",
+        "illuminate/database": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

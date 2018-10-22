@@ -1,7 +1,7 @@
 <?php
 // HTTP
 define('HTTP_SERVER', 'http://more-snov.ru/');
-
+define('SITE_NAME', 'http://more-snov.ru');
 // HTTPS
 define('HTTPS_SERVER', 'http://more-snov.ru/');
 
@@ -36,6 +36,8 @@ define('DB_USERNAME', 'u0335492_moresn');
 define('DB_PASSWORD', 'qazxswedc12');
 define('DB_DATABASE', 'u0335492_moresn');
 define('DB_PORT', '3306');
+define('DB_CHARSET', 'utf8');
+define('DB_COLLATION', 'utf8_general_ci');
 define('DB_PREFIX', 'oc_');
 
 
