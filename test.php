@@ -8,8 +8,9 @@ require 'vendor/autoload.php';
 require 'config.php';
 require 'bootstrap.php';
 
-$products = \App\Models\Product\Product::find(1470)->attribute->toArray();
+$service = new \App\Services\EvateksService();
+$service->parse();
 
-echo '<pre>';
-print_r($products);
-echo '</pre>';
+//echo '<pre>';
+//print_r($products);
+//echo '</pre>';

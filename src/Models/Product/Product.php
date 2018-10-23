@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * This is the model class for table "product".
  *
  * @property integer $product_id
+ * @property integer $external_id
  * @property string $model
  * @property string $sku
  * @property string $upc
