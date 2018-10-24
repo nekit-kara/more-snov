@@ -12,7 +12,7 @@ use App\Models\Product\Product;
 
 class ProductRepository
 {
-    public function findProduct($externalId)
+    public function getProduct($externalId)
     {
         return Product::where('external_id', '=', $externalId)->first();
     }

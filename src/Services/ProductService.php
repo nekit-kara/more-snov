@@ -23,7 +23,7 @@ class ProductService
 
     public function processProductDataRow(array $productData)
     {
-        $product = $this->repository->findProduct($productData[FieldHelper::PRODUCT_ID]);
+        $product = $this->repository->getProduct($productData[FieldHelper::PRODUCT_ID]);
 
         if (!$product) {
             $this->saveProduct($productData);
