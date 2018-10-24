@@ -52,8 +52,11 @@ class EvateksService
 
         $interpreter->addObserver(function (array $columns) use ($fields) {
             $productData = array_combine($fields, $columns);
-            $service = new ProductService($productData);
-            $service->saveProduct();
+
+            if ($productData[FieldHelper::CATEGORY] !== 'Категория') {
+                $service = new ProductService();
+                $service->processProductDataRow($productData);
+            }
         });
 
         $csv->parse($this->sourcePath, $interpreter);

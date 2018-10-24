@@ -8,17 +8,37 @@
 
 namespace App\Services;
 
+use App\Helpers\FieldHelper;
+use App\Models\Product\Product;
+use App\Repositories\ProductRepository;
+
 class ProductService
 {
-    public $productData;
+    public $repository;
 
-    public function __construct(array $productData)
+    public function __construct()
     {
-        $this->productData = $productData;
+        $this->repository = new ProductRepository();
     }
 
-    public function saveProduct()
+    public function processProductDataRow(array $productData)
     {
-        var_dump($this->productData);
+        $product = $this->repository->findProduct($productData[FieldHelper::PRODUCT_ID]);
+
+        if (!$product) {
+            $this->saveProduct($productData);
+        } else {
+            $this->updateProduct($product, $productData);
+        }
+    }
+
+    public function saveProduct(array $productData)
+    {
+
+    }
+
+    public function updateProduct(Product $product, $productData)
+    {
+
     }
 }

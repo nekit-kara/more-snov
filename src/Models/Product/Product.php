@@ -54,6 +54,10 @@ class Product extends Model
     protected $table = 'product';
     protected $primaryKey = 'product_id';
 
+    public static function latest($column = 'created_at'){
+        return \Illuminate\Database\Query\Builder::latest($column);
+    }
+
     public function attribute()
     {
         return $this->hasMany(get_class(new ProductAttribute()));
