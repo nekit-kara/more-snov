@@ -54,7 +54,7 @@ class EvateksService
             $productData = array_combine($fields, $columns);
 
             if ($productData[FieldHelper::CATEGORY] !== 'Категория') {
-                $service = new ProductService();
+                $service = new EvateksProductService();
                 $service->processProductDataRow($productData);
             }
         });
