@@ -31,4 +31,13 @@ class Category extends Model
     protected $table = 'category';
     protected $primaryKey = 'category_id';
 
+    public function description()
+    {
+        return $this->hasOne(get_class(new CategoryDescription()), 'category_id', 'category_id');
+    }
+
+    public function path()
+    {
+        return $this->hasMany(get_class(new CategoryPath()), 'category_id', 'category_id');
+    }
 }
