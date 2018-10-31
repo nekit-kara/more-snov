@@ -31,14 +31,13 @@ class EvateksCategoryService
 
             $categoryId = 0;
             $level = 0;
-            foreach ($categories as $category) {
-                var_dump($category);
-//                $category = $this->categoryDescriptionRepository->getCategoryDescriptionByName($category);
-//                if ($category) {
-//                    $categoryId = $category->category_id;
-//                } else {
-//                    $categoryId = $this->categoryRepository->createCategory($categoryId, $category, $level);
-//                }
+            foreach ($categories as $categoryName) {
+                $category = $this->categoryDescriptionRepository->getCategoryDescriptionByName($categoryName);
+                if ($category) {
+                    $categoryId = $category->category_id;
+                } else {
+                    $categoryId = $this->categoryRepository->createCategory($categoryId, $categoryName, $level);
+                }
 
                 $level++;
             }
