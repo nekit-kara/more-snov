@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class ManufacturerToStore extends Model
 {
     protected $table = 'manufacturer_to_store';
-    protected $primaryKey = 'manufacturer_id';
+    protected $primaryKey = null;
     public $timestamps = false;
     public $incrementing = false;
 }

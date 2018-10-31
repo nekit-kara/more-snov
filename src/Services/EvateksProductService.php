@@ -10,8 +10,10 @@ namespace App\Services;
 
 use App\Helpers\FieldHelper;
 use App\Models\Product\Product;
+use App\Models\Product\ProductToCategory;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ManufacturerRepository;
+use App\Repositories\OptionRepository;
 use App\Repositories\ProductRepository;
 use App\Validators\CategoryValidator;
 use Curl\Curl;
@@ -21,14 +23,16 @@ class EvateksProductService
     public $productRepository;
     public $categoryRepository;
     public $manufacturerRepository;
+    public $optionRepository;
     public $categoryValidator;
 
     public function __construct()
     {
         $this->productRepository = new ProductRepository();
         $this->categoryRepository = new CategoryRepository();
-        $this->categoryValidator = new CategoryValidator();
         $this->manufacturerRepository = new ManufacturerRepository();
+        $this->optionRepository = new OptionRepository();
+        $this->categoryValidator = new CategoryValidator();
     }
 
     public function processProductDataRow(array $productData)
@@ -50,12 +54,10 @@ class EvateksProductService
         if ($isRobeCategories && !$isForBusinessCategories) {
 
             $categoryService = new EvateksCategoryService();
-            $categoryId = $categoryService->processCategoriesRawString($productData[FieldHelper::CATEGORY]);
+            $arCategories = $categoryService->processCategoriesRawString($productData[FieldHelper::CATEGORY]);
             $productNameAndSKU = $this->getProductNameAndSKU($productData[FieldHelper::PRODUCT_NAME]);
             $photos = $this->processPhotoString($productData[FieldHelper::PHOTOS]);
             $manufacturerId = $this->getManufacturerIdByName($productData[FieldHelper::MANUFACTURER]);
-
-            var_dump($photos);
 
             $product = new Product();
             $product->external_id = $productData[FieldHelper::PRODUCT_ID];
@@ -66,6 +68,26 @@ class EvateksProductService
             $product->quantity = 999;
             $product->stock_status_id = 7;
             $product->image = $photos[0];
+            $product->manufacturer_id = $manufacturerId;
+            $product->shipping = true;
+            $product->price = (int)$productData[FieldHelper::PRICE];
+            $product->points = 0;
+            $product->tax_class_id = 0;
+            $product->date_available = time();
+            $product->weight = 0;
+            $product->length = 0;
+            $product->height = 0;
+            $product->length_class_id = 1;
+            $product->subtract = true;
+            $product->minimum = 1;
+            $product->sort_order = 0;
+            $product->status = true;
+            $product->viewed = 0;
+
+//            if ($product->save()) {
+//                $this->saveRelationToCategory($product->product_id, $arCategories);
+                $this->saveProductOptions($product->product_id, $productData[FieldHelper::SIZE]);
+//            }
         }
 
         return null;
@@ -115,5 +137,33 @@ class EvateksProductService
             return $manufacturer->manufacturer_id;
         }
         return $this->manufacturerRepository->createManufacturer($name);
+    }
+
+    public function saveRelationToCategory($productId, $categories)
+    {
+        foreach ($categories as $categoryId) {
+            $productToCategory = new ProductToCategory();
+            $productToCategory->product_id = $productId;
+            $productToCategory->category_id = $categoryId;
+            $productToCategory->main_category = 0;
+            $productToCategory->save();
+        }
+    }
+
+    public function saveProductOptions($productId, $options)
+    {
+        $sizes = explode(',', $options);
+
+        foreach ($sizes as $size) {
+            $optionValueDescription = $this->optionRepository->getOptionValueDescriptionByName(trim($size));
+
+            if ($optionValueDescription) {
+                $optionId = $optionValueDescription->option_id;
+
+            } else {
+                var_dump($size);
+//                $optionId = $this->optionRepository->saveOption(trim($size));
+            }
+        }
     }
 }

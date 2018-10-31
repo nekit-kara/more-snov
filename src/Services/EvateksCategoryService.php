@@ -31,6 +31,7 @@ class EvateksCategoryService
 
             $categoryId = 0;
             $level = 0;
+            $arCategories = [];
             foreach ($categories as $categoryName) {
                 $category = $this->categoryDescriptionRepository->getCategoryDescriptionByName($categoryName);
                 if ($category) {
@@ -39,11 +40,13 @@ class EvateksCategoryService
                     $categoryId = $this->categoryRepository->createCategory($categoryId, $categoryName, $level);
                 }
 
+                $arCategories[] = $categoryId;
+
                 $level++;
             }
 
             if ($categoryId !== 0 && $categoryId !== null) {
-                return $categoryId;
+                return $arCategories;
             }
         }
         return null;
