@@ -8,7 +8,7 @@ require 'vendor/autoload.php';
 require 'config.php';
 require 'bootstrap.php';
 //
-//$service = new \App\Services\EvateksService();
-//$service->parse();
+$service = new \App\Services\EvateksService();
+$service->parse();
 
 //var_dump(123);

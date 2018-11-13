@@ -11,6 +11,7 @@ namespace App\Services;
 use App\Helpers\FieldHelper;
 use App\Models\Product\Product;
 use App\Models\Product\ProductAttribute;
+use App\Models\Product\ProductImage;
 use App\Models\Product\ProductToCategory;
 use App\Models\Product\ProductToLayout;
 use App\Models\Product\ProductToStore;
@@ -122,8 +123,7 @@ class EvateksProductService
                     $productData[FieldHelper::COMPOSITION],
                     FieldHelper::ID_COMPOSITION_ATTRIBUTE
                 );
-
-                var_dump($product->product_id);
+                $this->savePhotos($product->product_id, $photos);
             }
         }
 
@@ -132,7 +132,9 @@ class EvateksProductService
 
     public function updateProduct(Product $product, array $productData)
     {
-        return null;
+        var_dump($product->product_id);
+        $photos = $this->processPhotoString($productData[FieldHelper::PHOTOS]);
+        $this->savePhotos($product->product_id, $photos);
     }
 
     public function getProductNameAndSKU($string)
@@ -283,6 +285,27 @@ class EvateksProductService
             $newProductAttribute->language_id = 1;
             $newProductAttribute->text = $attributeValue;
             $newProductAttribute->save();
+        }
+    }
+
+    public function savePhotos($productId, $arPhoto)
+    {
+        $sort = 1;
+        foreach ($arPhoto as $photo) {
+            $productImage = ProductImage::where([
+                'product_id' => $productId,
+                'image' => $photo
+            ])->first();
+
+            if (!$productImage) {
+                $newProductImage = new ProductImage();
+                $newProductImage->product_id = $productId;
+                $newProductImage->image = $photo;
+                $newProductImage->sort_order = $sort;
+                $newProductImage->save();
+            }
+
+            $sort++;
         }
     }
 }
