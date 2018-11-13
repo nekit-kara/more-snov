@@ -56,7 +56,6 @@ class EvateksService
             if ($productData[FieldHelper::CATEGORY] !== 'Категория') {
                 $service = new EvateksProductService();
                 $service->processProductDataRow($productData);
-                die();
             }
         });
 

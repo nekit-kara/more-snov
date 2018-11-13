@@ -30,4 +30,29 @@ class FieldHelper
     const PHOTOS = 'photos';
     const VIDEO = 'video';
     const DESCRIPTION = 'description';
+
+    /*
+     * id для селекта халатов
+     */
+    const ID_SELECT_SIZES = '14';
+
+    /*
+     * id для группы атрибутов халатов
+     */
+    const ID_ATTRIBUTE_GROUP = '21';
+
+    /*
+     * id для атрибута цвет
+     */
+    const ID_COLOR_ATTRIBUTE = '57';
+
+    /*
+     * id для атрибута состав
+     */
+    const ID_COMPOSITION_ATTRIBUTE = '56';
+
+    /*
+     * id для атрибута материал
+     */
+    const ID_MATERIAL_ATTRIBUTE = '55';
 }

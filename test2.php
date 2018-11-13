@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Product\ProductOption;
+
 header('Content-Type: text/html; charset=UTF-8');
 
 ini_set('display_errors', 'true');
@@ -8,13 +10,13 @@ require 'vendor/autoload.php';
 require 'config.php';
 require 'bootstrap.php';
 
-$test = \App\Models\Category\Category::find(229);
+$test = ProductOption::where([
+    'product_id' => 1480,
+    'option_id' => '15',
+])->first();
 
 
 
 echo '<pre>';
-foreach ($test->path->toArray() as $path) {
-    print_r($path);
-}
-print_r($test->description->name);
+print_r($test->product_option_id);
 echo '</pre>';
