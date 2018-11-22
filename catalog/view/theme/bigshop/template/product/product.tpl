@@ -114,7 +114,7 @@ $("#zoom_01").bind("click", function(e) {
                   <?php if ($manufacturer) { ?>
                     <div class="b-product-params__item"><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><span itemprop="brand"><?php echo $manufacturer; ?></span></a></div>
                   <?php } ?>
-                  <div class="b-product-params__item"><?php echo $text_model; ?> <span itemprop="mpn"><?php echo $model; ?></span></div>
+                  <div class="b-product-params__item">Артикул: <span itemprop="mpn"><?php echo $model; ?></span></div>
                   <?php if ($reward) { ?>
                   <div class="b-product-params__item"><?php echo $text_reward; ?> <?php echo $reward; ?></div>
                   <?php } ?>
@@ -292,7 +292,7 @@ $("#zoom_01").bind("click", function(e) {
           <div class="tab-pane" id="tab-review">
             <form class="form-horizontal" id="form-review">
               <div id="review"></div>
-              <h2><?php echo $text_write; ?></h2>
+              <div class="typeh2"><?php echo $text_write; ?></div>
               <?php if ($review_guest) { ?>
               <div class="form-group required">
                 <div class="col-sm-12">

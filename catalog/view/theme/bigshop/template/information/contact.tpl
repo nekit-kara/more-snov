@@ -15,21 +15,22 @@
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
-      <h3><?php echo $text_location; ?></h3>
+      <br>
+      <!--<h3><?php //echo $text_location; ?></h3>-->
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
             <?php if ($image) { ?>
             <div class="col-sm-3"><img src="<?php echo $image; ?>" alt="<?php echo $store; ?>" title="<?php echo $store; ?>" class="img-thumbnail" /></div>
             <?php } ?>
-            <div class="col-sm-3"><strong><?php echo $store; ?></strong><br />
+            <!--/*<div class="col-sm-3"><strong><?php echo $store; ?></strong><br />
               <address>
               <?php echo $address; ?>
               </address>
               <?php if ($geocode) { ?>
               <a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
               <?php } ?>
-            </div>
+            </div>*/-->
             <div class="col-sm-3"><strong><?php echo $text_telephone; ?></strong><br>
               <?php echo $telephone; ?><br />
               <br />
@@ -37,6 +38,8 @@
               <strong><?php echo $text_fax; ?></strong><br>
               <?php echo $fax; ?>
               <?php } ?>
+              <strong>E-mail</strong><br>
+              <a href="mailto:info@more-snov.ru">info@more-snov.ru</a>
             </div>
             <div class="col-sm-3">
               <?php if ($open) { ?>
@@ -66,6 +69,7 @@
                 <?php if ($location['image']) { ?>
                 <div class="col-sm-3"><img src="<?php echo $location['image']; ?>" alt="<?php echo $location['name']; ?>" title="<?php echo $location['name']; ?>" class="img-thumbnail" /></div>
                 <?php } ?>
+                <!-- /*
                 <div class="col-sm-3"><strong><?php echo $location['name']; ?></strong><br />
                   <address>
                   <?php echo $location['address']; ?>
@@ -73,7 +77,7 @@
                   <?php if ($location['geocode']) { ?>
                   <a href="https://maps.google.com/maps?q=<?php echo urlencode($location['geocode']); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
                   <?php } ?>
-                </div>
+                </div> */ -->
                 <div class="col-sm-3"> <strong><?php echo $text_telephone; ?></strong><br>
                   <?php echo $location['telephone']; ?><br />
                   <br />

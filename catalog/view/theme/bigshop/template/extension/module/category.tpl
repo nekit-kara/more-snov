@@ -1,4 +1,4 @@
-<h3><?php echo $heading_title; ?></h3>
+<div class="typeh3"><?php echo $heading_title; ?></div>
 <div class="list-group">
 <ul class="list-item">
   <?php foreach ($categories as $category) { ?>

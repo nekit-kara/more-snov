@@ -18,6 +18,9 @@
 <?php if ($keywords) { ?>
 <meta name="keywords" content="<?php echo $keywords; ?>" />
 <?php } ?>
+<? if(isset($_GET['page'])) { ?>
+<link rel="canonical" href='<?=SITE_NAME;?><?=parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);?>'>
+<? } ?>
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
@@ -1375,7 +1378,7 @@ border-top:<?php echo $bigshop_menu_link_border_bottom_size ?>px <?php echo $big
                             </div>
                             <div class="b-text-icon b-text-icon_work">
                                 <div class="b-text-icon__image icon icon_tel"></div>
-                                <div class="b-text-icon__text">+7 (1234) 56-57-58 <br>+7 (1234) 56-57-58</div>
+                                <div class="b-text-icon__text">+7 (812) 244-08-93</div>
                             </div>
                         </div>
                         <div class="col-lg-7 col-xs-12 pull-right text-right">

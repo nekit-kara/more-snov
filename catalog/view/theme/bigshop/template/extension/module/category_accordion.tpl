@@ -1,5 +1,5 @@
 <script type="text/javascript" src="catalog/view/theme/bigshop/js/jquery.dcjqaccordion.min.js"></script> 
-<h3><?php echo $heading_title; ?></h3>
+<div class="typeh3"><?php echo $heading_title; ?></div>
 <div class="box-category"><?php echo $category_accordion; ?></div>
 <script type="text/javascript">
 $(document).ready(function() {

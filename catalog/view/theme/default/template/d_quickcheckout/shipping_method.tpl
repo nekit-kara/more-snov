@@ -63,7 +63,7 @@
                                         <input type="radio" name="shipping_method" value="<%= quote.code %>" id="<%= quote.code %>" data-refresh="5" class="form-check-input form-check-input_custom styled"/>
                                         <% } %>
                                         <div class="control_indicator"></div>
-                                        <span class="text">Бесплатная доставка</span><span class="price"><%= quote.text %></span></label>
+                                        <span class="text">Курьерская доставка</span><span class="price"><%= quote.text %></span></label>
                                 </div>
                                 <% } else { %>
                                 <div class="radio-input radio form-check">

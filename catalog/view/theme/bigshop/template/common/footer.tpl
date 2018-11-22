@@ -65,7 +65,7 @@ if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$la
       <div class="row">
         <?php if ($informations) { ?>
         <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-          <h5><?php echo $text_information; ?></h5>
+          <div class="typeh5"><?php echo $text_information; ?></div>
           <ul>
             <?php foreach ($informations as $information) { ?>
             <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
@@ -74,21 +74,21 @@ if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$la
         </div>
         <?php } ?>
         <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-          <h5><?php echo $text_service; ?></h5>
+          <div class="typeh5"><?php echo $text_service; ?></div>
           <ul>
             <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
             <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
           </ul>
         </div>
         <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-          <h5><?php echo $text_extra; ?></h5>
+          <div class="typeh5"><?php echo $text_extra; ?></div>
           <ul>
             <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
             <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
           </ul>
         </div>
         <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-          <h5><?php echo $text_account; ?></h5>
+          <div class="typeh5"><?php echo $text_account; ?></div>
           <ul>
             <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
             <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
@@ -101,7 +101,7 @@ if((isset($bigshop_feature_box1_title[$lang]) && $bigshop_feature_box1_title[$la
 if((isset($bigshop_address[$lang]) && $bigshop_address[$lang] != '') || (isset($bigshop_contact[$lang]) && $bigshop_contact[$lang] != '') || (isset($bigshop_mobile[$lang]) && $bigshop_mobile[$lang] != '') || (isset($bigshop_email[$lang]) && $bigshop_email[$lang] != '')) { ?>
         <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <?php if($bigshop_contact_status == 1) { if(isset($bigshop_contact[$lang]) && $bigshop_contact[$lang] != '') { ?>
-          <h5><?php echo $bigshop_contact[$lang]; ?></h5>
+          <div class="typeh5"><?php echo $bigshop_contact[$lang]; ?></div>
           <?php } ?>
           <?php } ?>
           <?php if($bigshop_address_status == 1 || $bigshop_mobile_status == 1 || $bigshop_email_status == 1) { ?>
@@ -128,7 +128,7 @@ if((isset($bigshop_address[$lang]) && $bigshop_address[$lang] != '') || (isset($
 if((isset($bigshop_contact[$lang]) && $bigshop_contact[$lang] != '') || (isset($bigshop_about_details[$lang]['description']) && $bigshop_about_details[$lang]['description'] != '')) { ?>
         <div class="about_details col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <?php if($bigshop_contact_status == 1) { if(isset($bigshop_contact[$lang]) && $bigshop_contact[$lang] != '') { ?>
-          <h5><?php echo $bigshop_contact[$lang]; ?></h5>
+          <div class="typeh5"><?php echo $bigshop_contact[$lang]; ?></div>
           <?php } ?>
           <?php } ?>
             <?php echo html_entity_decode($bigshop_about_details[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?>
