@@ -105,9 +105,9 @@ class ControllerDQuickcheckoutShippingAddress extends Controller {
         if(isset($this->request->post['shipping_address'])){
 
             //fix &amp;
-            foreach ($this->request->post['shipping_address'] as $key => $value) {
-                $this->request->post['shipping_address'][$key] = htmlspecialchars_decode($value);
-            }
+//            foreach ($this->request->post['shipping_address'] as $key => $value) {
+//                $this->request->post['shipping_address'][$key] = htmlspecialchars_decode($value);
+//            }
             
             if(isset($this->session->data['shipping_address']['country_id']) && isset($this->request->post['shipping_address']['country_id'])){
                 if($this->session->data['shipping_address']['country_id'] != $this->request->post['shipping_address']['country_id']){
