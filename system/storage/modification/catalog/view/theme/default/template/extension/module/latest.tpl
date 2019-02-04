@@ -19,7 +19,7 @@
         </div>
         <?php } ?>
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
         <?php if ($product['price']) { ?>

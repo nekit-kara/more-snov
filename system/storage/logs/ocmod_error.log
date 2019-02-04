@@ -17938,3 +17938,803 @@ NOT FOUND!
 CODE: $data['options'] = array();
 FILE: catalog/controller/product/category.php
 MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 0:09:26 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 0:28:12 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 0:32:38 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 0:33:31 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 0:34:54 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:07:25 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:10:28 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:16:53 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:19:31 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:20:21 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:24:25 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:26:46 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 2:28:13 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 15:20:40 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-01-29 15:22:11 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+2018-02-14 23:07:05 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <li><b><?php echo $text_stock; ?></b> <?php echo $stock; ?></li>
+FILE: catalog/view/theme/bigshop/template/product/product.tpl
+MOD: Bigshop Theme
+----------------------------------------------------------------
+NOT FOUND!
+CODE: if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+FILE: catalog/controller/checkout/checkout.php
+MOD: Ajax Quick Checkout
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/category.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+FILE: admin/model/catalog/product.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: 'meta_keyword'     => $query->row['meta_keyword'],
+FILE: catalog/model/catalog/information.php
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <label class="col-sm-2 control-label" for="input-description"><?php echo $entry_description; ?></label>
+FILE: admin/view/template/catalog/information_form.tpl
+MOD: Custom H1
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $json['error'] = sprintf($this->language->get('error_exists'), $modification_info['name']);
+FILE: admin/controller/extension/installer.php
+MOD: |Extension Uninstaller by iSenseLabs
+----------------------------------------------------------------
+NOT FOUND!
+CODE: value="<?php echo $option_value['product_option_value_id']; ?>"
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <?php if ($options) { ?>
+FILE: catalog/view/theme/default/template/product/category.tpl
+MOD: Обновление цены при выборе опций OC2 (без AJAX)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: $data['options'] = array();
+FILE: catalog/controller/product/category.php
+MOD: Обновление цены при выборе опций OC2 (без AJAX)

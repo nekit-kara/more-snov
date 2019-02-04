@@ -114,7 +114,7 @@ $("#zoom_01").bind("click", function(e) {
                   <?php if ($manufacturer) { ?>
                     <div class="b-product-params__item"><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><span itemprop="brand"><?php echo $manufacturer; ?></span></a></div>
                   <?php } ?>
-                  <div class="b-product-params__item"><?php echo $text_model; ?> <span itemprop="mpn"><?php echo $model; ?></span></div>
+                  <div class="b-product-params__item">Артикул: <span itemprop="mpn"><?php echo $model; ?></span></div>
                   <?php if ($reward) { ?>
                   <div class="b-product-params__item"><?php echo $text_reward; ?> <?php echo $reward; ?></div>
                   <?php } ?>
@@ -682,6 +682,7 @@ recalculateprice();
                 <?php } ?>
                 <?php } ?>
                 <?php } ?>
+				<div class="b-product-size-table"><a href="#">Таблица размеров</a></div>
                 <div class="b-product-like" onclick="wishlist.add('<?php echo $product_id; ?>');"></div>
                 <div class="b-product-compare" onclick="compare.add('<?php echo $product_id; ?>');"></div>
               </div>
@@ -744,23 +745,23 @@ recalculateprice();
                         <img src="catalog/view/theme/bigshop/images/content/delivery.png" alt="">
                     </div>
                     <div class="b-product-info__text">
-                        бесплатная доставка от 3000 р. <br>
-                        доставка по Санкт-Петербургу 300 р.* <br>
-                        *в пределах КАД
+                        БЕСПЛАТНАЯ доставка от 3000 р. <br>
+                        Доставка по Москве и СПб 300 р.* <br>
+                        *в пределах МКАД/КАД
                     </div>
                 </div>
                 <div class="b-product-info__item">
                     <div class="b-product-info__image">
                         <img src="catalog/view/theme/bigshop/images/content/card.png" alt="">
                     </div>
-                    <div class="b-product-info__text">оплата наличными курьеру</div>
+                    <div class="b-product-info__text">Оплата наличными курьеру</div>
                 </div>
                 <div class="b-product-info__item">
                     <div class="b-product-info__image">
                         <img src="catalog/view/theme/bigshop/images/content/money.png" alt="">
                     </div>
                     <div class="b-product-info__text">
-                        оплата картой Visa, MasterCard, ЯндексДеньги
+                        Оплата картой Visa, MasterCard
                     </div>
                 </div>
             </div>
@@ -837,7 +838,7 @@ recalculateprice();
           <div class="tab-pane" id="tab-review">
             <form class="form-horizontal" id="form-review">
               <div id="review"></div>
-              <h2><?php echo $text_write; ?></h2>
+              <div class="typeh2"><?php echo $text_write; ?></div>
               <?php if ($review_guest) { ?>
               <div class="form-group required">
                 <div class="col-sm-12">

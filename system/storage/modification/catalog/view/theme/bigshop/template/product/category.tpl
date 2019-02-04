@@ -17,7 +17,6 @@
       <h1><?php echo $heading_title; ?></h1>
       <?php if($bigshop_refine_categories == 1) { ?>
       <?php if ($categories) { ?>
-<!--      <h3>--><?php //echo $text_refine; ?><!--</h3>-->
       <?php if($bigshop_refine_categories_images == 1) { ?>
       <div class="category-list-thumb row" style="margin-bottom:0px;">
         <?php $counter = 0; foreach ($categories as $category) {?>
@@ -294,10 +293,10 @@ $( window ).resize(function() {
             <div class="image b-product-custom__image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
             <div>
                 <div class="caption b-product-custom__caption">
-                  <h4 class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+                  <div class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
                   <div class="b-product-custom__params">
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
                       <?php $params_block; ?>

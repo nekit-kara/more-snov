@@ -10,7 +10,7 @@
         <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
         <!--<p><?php echo $product['description']; ?></p>-->
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
         <?php if ($product['price']) { ?>
@@ -231,7 +231,7 @@ $( window ).resize(function() {
         <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
         <!--<p><?php echo $product['description']; ?></p>-->
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
         <?php if ($product['price']) { ?>
@@ -290,7 +290,7 @@ $( window ).resize(function() {
         <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
         <!--<p><?php echo $product['description']; ?></p>-->
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
         <?php if ($product['price']) { ?>

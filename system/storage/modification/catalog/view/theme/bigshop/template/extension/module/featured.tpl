@@ -1,16 +1,16 @@
 <?php if ($module['position'] == 'content_top' || $module['position'] == 'content_bottom') { ?>
 <?php if($bigshop_featured_slider_product_style == '1') { ?>
-<h3><?php echo $heading_title; ?></h3>
+<div class="typeh3"><?php echo $heading_title; ?></div>
 <div class="row products-category featured_carousel mod">
 <?php foreach ($products as $product) { ?>
 <div class="product-layout">  
     <div class="product-thumb b-product-custom clearfix">
       <div class="image b-product-custom__image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
       <div class="caption b-product-custom__caption">
-          <h4 class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+          <div class="typeh4 b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
           <div class="b-product-custom__params">
 
-			<div style="padding-top:5px;">Модель: <?php echo $product['model']; ?></div>
+			<div style="padding-top:5px;">Артикул: <?php echo $product['model']; ?></div>
 			<div style="padding-top:5px;">Производитель: <?php echo $product['manufacturer']; ?></div>
 			
               <?php $params_block; ?>
@@ -221,13 +221,13 @@ $( window ).resize(function() {
 <?php } ?>
 
 <?php } else { ?>
-<h3><?php echo $heading_title; ?></h3>
+<div class="typeh3"><?php echo $heading_title; ?></div>
 <div class="owl-carousel featured_carousel">
 <?php foreach ($products as $product) { ?>
     <div class="product-thumb clearfix">
       <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
       <div class="caption">
-        <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+        <div class="typeh4"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
         <!--<p><?php echo $product['description']; ?></p>-->
         <?php if ($product['price']) { ?>
         <p class="price">
@@ -276,14 +276,14 @@ $( window ).resize(function() {
 </script>
 <?php } ?>
 <?php } else { ?>
-<h3><?php echo $heading_title; ?></h3>
+<div class="typeh3"><?php echo $heading_title; ?></div>
 <div class="row products-category mod">
 <?php foreach ($products as $product) { ?>
 <div class="product-layout">  
     <div class="product-thumb clearfix">
       <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
       <div class="caption">
-        <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+        <div class="typeh4"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
         <!--<p><?php echo $product['description']; ?></p>-->
         <?php if ($product['price']) { ?>
         <p class="price">
