@@ -294,7 +294,7 @@ $( window ).resize(function() {
             <div class="image b-product-custom__image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
             <div>
                 <div class="caption b-product-custom__caption">
-                  <h4 class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+                  <div class="b-product-custom__title"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
                   <div class="b-product-custom__params">
                       <?php $params_block; ?>
                   </div>
