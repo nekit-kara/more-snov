@@ -2174,7 +2174,7 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
                         <div class="col-lg-2 col-xs-12 mobile-header">
 
                             <div>
-                                test
+                                <i class="fa fa-bars" aria-hidden="true"></i>
                             </div>
 
 
@@ -2186,9 +2186,7 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
                             </div>
 
 
-                            <div>
-                                <?php echo $cart; ?>
-                            </div>
+                            <?= $cart ?>
 
                         </div>
 
