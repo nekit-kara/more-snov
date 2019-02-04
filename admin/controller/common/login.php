@@ -12,6 +12,9 @@ class ControllerCommonLogin extends Controller {
 		}
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			$this->load->model('user/api');
+			$api_info = $this->model_user_api->getApi($this->config->get('config_api_id'));           
+			$this->model_user_api->addApiIp($api_info['api_id'], $this->request->server['REMOTE_ADDR']);
 			$this->session->data['token'] = token(32);
 			
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0 || strpos($this->request->post['redirect'], HTTPS_SERVER) === 0)) {
