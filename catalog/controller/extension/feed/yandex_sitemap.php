@@ -12,12 +12,17 @@ class ControllerExtensionFeedYandexSitemap extends Controller
     private $products = array(); //массив с продуктами
     private $output = ''; //строка вывода
     private $file_time_expired = '3600'; //in seconds -время хранения файла
+    private $ssl = 'NONSSL'; //in seconds -время хранения файла
     const DEBUG_MODE = false;
 
     public function __construct($registry)
     {
         parent::__construct($registry);
         $this->load->model('extension/feed/yandex_sitemap');
+
+        if ($this->request->server['HTTPS']) {
+            $this->ssl = 'SSL';
+        }
     }
 
     /**
@@ -80,7 +85,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
             foreach ($this->products as $product) {
                 $this->output .= '<url>' . $this->eol;
                 $this->output .= '<loc>' . $this->url->link('product/product',
-                        'product_id=' . $product['product_id']) . '</loc>' . $this->eol;
+                        'product_id=' . $product['product_id'], $this->ssl) . '</loc>' . $this->eol;
                 $this->output .= '<changefreq>weekly</changefreq>' . $this->eol;
 
                 //так как даты может не быть - в яндексе будет предупреждение о неврном формате (так как в базе может быть
@@ -109,7 +114,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
             foreach ($manufacturers as $manufacturer) {
                 $this->output .= '<url>' . $this->eol;
                 $this->output .= '<loc>' . $this->url->link('product/manufacturer/info',
-                        'manufacturer_id=' . $manufacturer['manufacturer_id']) . '</loc>' . $this->eol;
+                        'manufacturer_id=' . $manufacturer['manufacturer_id'], $this->ssl) . '</loc>' . $this->eol;
                 $this->output .= '<changefreq>weekly</changefreq>' . $this->eol;
                 $this->output .= '<priority>0.7</priority>' . $this->eol;
                 $this->output .= '</url>' . $this->eol;
@@ -119,7 +124,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
                 foreach ($products as $product) {
                     $this->output .= '<url>' . $this->eol;
                     $this->output .= '<loc>' . $this->url->link('product/product',
-                            'manufacturer_id=' . $manufacturer['manufacturer_id'] . '&product_id=' . $product['product_id']) . '</loc>' . $this->eol;
+                            'manufacturer_id=' . $manufacturer['manufacturer_id'] . '&product_id=' . $product['product_id'], $this->ssl) . '</loc>' . $this->eol;
                     $this->output .= '<changefreq>weekly</changefreq>' . $this->eol;
                     $this->output .= '</url>' . $this->eol;
                 }
@@ -130,7 +135,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
             foreach ($informations as $information) {
                 $this->output .= '<url>' . $this->eol;
                 $this->output .= '<loc>' . $this->url->link('information/information',
-                        'information_id=' . $information['information_id']) . '</loc>' . $this->eol;
+                        'information_id=' . $information['information_id'], $this->ssl) . '</loc>' . $this->eol;
                 $this->output .= '<changefreq>weekly</changefreq>' . $this->eol;
                 $this->output .= '<priority>0.5</priority>' . $this->eol;
                 $this->output .= '</url>' . $this->eol;
@@ -170,7 +175,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
             }
 
             $output .= '<url>' . $this->eol;
-            $output .= '<loc>' . $this->url->link('product/category', 'path=' . $new_path) . '</loc>' . $this->eol;
+            $output .= '<loc>' . $this->url->link('product/category', 'path=' . $new_path, $this->ssl) . '</loc>' . $this->eol;
             $output .= '<changefreq>weekly</changefreq>' . $this->eol;
             $output .= '<priority>0.7</priority>' . $this->eol;
             $output .= '</url>' . $this->eol;
@@ -180,7 +185,7 @@ class ControllerExtensionFeedYandexSitemap extends Controller
             foreach ($products as $product) {
                 $output .= '<url>' . $this->eol;
                 $output .= '<loc>' . $this->url->link('product/product',
-                        'path=' . $new_path . '&product_id=' . $product['product_id']) . '</loc>' . $this->eol;
+                        'path=' . $new_path . '&product_id=' . $product['product_id'], $this->ssl) . '</loc>' . $this->eol;
                 $output .= '<changefreq>weekly</changefreq>' . $this->eol;
                 $output .= '<priority>1.0</priority>' . $this->eol;
                 $output .= '</url>' . $this->eol;
