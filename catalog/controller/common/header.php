@@ -1,6 +1,17 @@
 <?php
 class ControllerCommonHeader extends Controller {
-	public function index() {
+    private $ssl = 'NONSSL';
+
+    public function __construct($registry)
+    {
+        parent::__construct($registry);
+
+        if ($this->request->server['HTTPS']) {
+            $this->ssl = 'SSL';
+        }
+    }
+
+    public function index() {
 		// Analytics
 		$this->load->model('extension/extension');
 
@@ -109,7 +120,7 @@ class ControllerCommonHeader extends Controller {
 
 					$children_data[] = array(
 						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'], $this->ssl)
 					);
 				}
 
@@ -118,7 +129,7 @@ class ControllerCommonHeader extends Controller {
 					'name'     => $category['name'],
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
+					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'], $this->ssl)
 				);
 			}
 		}

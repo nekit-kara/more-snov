@@ -1,75 +1,90 @@
 <?php
-class ControllerCommonContentBottom extends Controller {
-	public function index() {
-		$this->load->model('design/layout');
 
-		if (isset($this->request->get['route'])) {
-			$route = (string)$this->request->get['route'];
-		} else {
-			$route = 'common/home';
-		}
+class ControllerCommonContentBottom extends Controller
+{
+    private $ssl = 'NONSSL';
 
-		$layout_id = 0;
+    public function __construct($registry)
+    {
+        parent::__construct($registry);
 
-		if ($route == 'product/category' && isset($this->request->get['path'])) {
-			$this->load->model('catalog/category');
+        if ($this->request->server['HTTPS']) {
+            $this->ssl = 'SSL';
+        }
+    }
 
-			$path = explode('_', (string)$this->request->get['path']);
 
-			$layout_id = $this->model_catalog_category->getCategoryLayoutId(end($path));
-		}
+    public function index()
+    {
+        $this->load->model('design/layout');
 
-		if ($route == 'product/product' && isset($this->request->get['product_id'])) {
-			$this->load->model('catalog/product');
+        if (isset($this->request->get['route'])) {
+            $route = (string)$this->request->get['route'];
+        } else {
+            $route = 'common/home';
+        }
 
-			$layout_id = $this->model_catalog_product->getProductLayoutId($this->request->get['product_id']);
-		}
+        $layout_id = 0;
 
-		if ($route == 'information/information' && isset($this->request->get['information_id'])) {
-			$this->load->model('catalog/information');
+        if ($route == 'product/category' && isset($this->request->get['path'])) {
+            $this->load->model('catalog/category');
 
-			$layout_id = $this->model_catalog_information->getInformationLayoutId($this->request->get['information_id']);
-		}
+            $path = explode('_', (string)$this->request->get['path']);
 
-		if (!$layout_id) {
-			$layout_id = $this->model_design_layout->getLayout($route);
-		}
+            $layout_id = $this->model_catalog_category->getCategoryLayoutId(end($path));
+        }
 
-		if (!$layout_id) {
-			$layout_id = $this->config->get('config_layout_id');
-		}
+        if ($route == 'product/product' && isset($this->request->get['product_id'])) {
+            $this->load->model('catalog/product');
 
-		$this->load->model('extension/module');
+            $layout_id = $this->model_catalog_product->getProductLayoutId($this->request->get['product_id']);
+        }
 
-		$data['modules'] = array();
+        if ($route == 'information/information' && isset($this->request->get['information_id'])) {
+            $this->load->model('catalog/information');
 
-		$modules = $this->model_design_layout->getLayoutModules($layout_id, 'content_bottom');
+            $layout_id = $this->model_catalog_information->getInformationLayoutId($this->request->get['information_id']);
+        }
 
-		foreach ($modules as $module) {
-			$part = explode('.', $module['code']);
+        if (!$layout_id) {
+            $layout_id = $this->model_design_layout->getLayout($route);
+        }
 
-			if (isset($part[0]) && $this->config->get($part[0] . '_status')) {
-				$module_data = $this->load->controller('extension/module/' . $part[0]);
+        if (!$layout_id) {
+            $layout_id = $this->config->get('config_layout_id');
+        }
 
-				if ($module_data) {
-					$data['modules'][] = $module_data;
-				}
-			}
+        $this->load->model('extension/module');
 
-			if (isset($part[1])) {
-				$setting_info = $this->model_extension_module->getModule($part[1]);
-$setting_info['position'] = basename(__FILE__, '.php');
+        $data['modules'] = array();
 
-				if ($setting_info && $setting_info['status']) {
-					$output = $this->load->controller('extension/module/' . $part[0], $setting_info);
+        $modules = $this->model_design_layout->getLayoutModules($layout_id, 'content_bottom');
 
-					if ($output) {
-						$data['modules'][] = $output;
-					}
-				}
-			}
-		}
+        foreach ($modules as $module) {
+            $part = explode('.', $module['code']);
 
-		return $this->load->view('common/content_bottom', $data);
-	}
+            if (isset($part[0]) && $this->config->get($part[0] . '_status')) {
+                $module_data = $this->load->controller('extension/module/' . $part[0]);
+
+                if ($module_data) {
+                    $data['modules'][] = $module_data;
+                }
+            }
+
+            if (isset($part[1])) {
+                $setting_info = $this->model_extension_module->getModule($part[1]);
+                $setting_info['position'] = basename(__FILE__, '.php');
+
+                if ($setting_info && $setting_info['status']) {
+                    $output = $this->load->controller('extension/module/' . $part[0], $setting_info);
+
+                    if ($output) {
+                        $data['modules'][] = $output;
+                    }
+                }
+            }
+        }
+
+        return $this->load->view('common/content_bottom', $data);
+    }
 }

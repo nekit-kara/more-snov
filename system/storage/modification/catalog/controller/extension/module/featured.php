@@ -1,99 +1,113 @@
 <?php
-class ControllerExtensionModuleFeatured extends Controller {
-	public function index($setting) {
-		$this->load->language('extension/module/featured');
 
-		$data['heading_title'] = $this->language->get('heading_title');
+class ControllerExtensionModuleFeatured extends Controller
+{
+    private $ssl = 'NONSSL';
 
-		$data['text_tax'] = $this->language->get('text_tax');
+    public function __construct($registry)
+    {
+        parent::__construct($registry);
 
-		$data['button_cart'] = $this->language->get('button_cart');
-		$data['button_wishlist'] = $this->language->get('button_wishlist');
-		$data['button_compare'] = $this->language->get('button_compare');
+        if ($this->request->server['HTTPS']) {
+            $this->ssl = 'SSL';
+        }
+    }
 
-$this->document->addStyle('catalog/view/theme/bigshop/stylesheet/owl.carousel.css');
-          $this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
-		$this->load->model('catalog/product');
+    public function index($setting)
+    {
+        $this->load->language('extension/module/featured');
 
-		$this->load->model('tool/image');
-$data['module'] = $setting;
+        $data['heading_title'] = $this->language->get('heading_title');
 
-		$data['products'] = array();
+        $data['text_tax'] = $this->language->get('text_tax');
 
-			$data['bigshop_featured_slider_product_style'] = $this->config->get('bigshop_featured_slider_product_style');
-			$data['bigshop_percentage_discount_badge'] = $this->config->get('bigshop_percentage_discount_badge');
-			$data['bigshop_featured_slider_product_per_row'] = $this->config->get('bigshop_featured_slider_product_per_row');
-		
+        $data['button_cart'] = $this->language->get('button_cart');
+        $data['button_wishlist'] = $this->language->get('button_wishlist');
+        $data['button_compare'] = $this->language->get('button_compare');
 
-		if (!$setting['limit']) {
-			$setting['limit'] = 4;
-		}
+        $this->document->addStyle('catalog/view/theme/bigshop/stylesheet/owl.carousel.css');
+        $this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
+        $this->load->model('catalog/product');
 
-		if (!empty($setting['product'])) {
-			$products = array_slice($setting['product'], 0, (int)$setting['limit']);
+        $this->load->model('tool/image');
+        $data['module'] = $setting;
 
-			foreach ($products as $product_id) {
-				$product_info = $this->model_catalog_product->getProduct($product_id);
+        $data['products'] = array();
 
-				if ($product_info) {
-					if ($product_info['image']) {
-						$image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
-					} else {
-						$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
-					}
+        $data['bigshop_featured_slider_product_style'] = $this->config->get('bigshop_featured_slider_product_style');
+        $data['bigshop_percentage_discount_badge'] = $this->config->get('bigshop_percentage_discount_badge');
+        $data['bigshop_featured_slider_product_per_row'] = $this->config->get('bigshop_featured_slider_product_per_row');
 
-					if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
-						$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-					} else {
-						$price = false;
-					}
 
-					if ((float)$product_info['special']) {
-						$special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-					} else {
-						$special = false;
-					}
+        if (!$setting['limit']) {
+            $setting['limit'] = 4;
+        }
 
-					if ($this->config->get('config_tax')) {
-						$tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price'], $this->session->data['currency']);
-					} else {
-						$tax = false;
-					}
+        if (!empty($setting['product'])) {
+            $products = array_slice($setting['product'], 0, (int)$setting['limit']);
 
-					if ($this->config->get('config_review_status')) {
-						$rating = $product_info['rating'];
-					} else {
-						$rating = false;
-					}
+            foreach ($products as $product_id) {
+                $product_info = $this->model_catalog_product->getProduct($product_id);
 
-					$data['products'][] = array(
-						'product_id'  => $product_info['product_id'],
-						'thumb'       => $image,
-						'name'        => $product_info['name'],
-						'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
-						'price'       => $price,
-						'special'     => $special,
-						'tax'         => $tax,
-						'rating'      => $rating,
+                if ($product_info) {
+                    if ($product_info['image']) {
+                        $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+                    } else {
+                        $image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
+                    }
 
-			'model' 	  => $product_info['model'],
-			'manufacturer'   => $product_info['manufacturer'],
-			
-						'href'    	 => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
-          'saving' => $product_info['price'] == 0 ? 100 : round((($product_info['price'] - $product_info['special'])/$product_info['price'])*100, 0)
-					);
-				}
-			}
-		}
+                    if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                        $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                    } else {
+                        $price = false;
+                    }
 
-		if ($data['products']) {
+                    if ((float)$product_info['special']) {
+                        $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                    } else {
+                        $special = false;
+                    }
 
-			//begin_devos_attribute_ext
-      		$this->load->model('catalog/devos_attribute_ext');
-      		$data['products'] = $this->model_catalog_devos_attribute_ext->daeCatalog($data['products']);
-      		//end_devos_attribute_ext
-      
-			return $this->load->view('extension/module/featured', $data);
-		}
-	}
+                    if ($this->config->get('config_tax')) {
+                        $tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price'], $this->session->data['currency']);
+                    } else {
+                        $tax = false;
+                    }
+
+                    if ($this->config->get('config_review_status')) {
+                        $rating = $product_info['rating'];
+                    } else {
+                        $rating = false;
+                    }
+
+                    $data['products'][] = array(
+                        'product_id' => $product_info['product_id'],
+                        'thumb' => $image,
+                        'name' => $product_info['name'],
+                        'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+                        'price' => $price,
+                        'special' => $special,
+                        'tax' => $tax,
+                        'rating' => $rating,
+
+                        'model' => $product_info['model'],
+                        'manufacturer' => $product_info['manufacturer'],
+
+                        'href' => $this->url->link('product/product', 'product_id=' . $product_info['product_id'], $this->ssl),
+                        'saving' => $product_info['price'] == 0 ? 100 : round((($product_info['price'] - $product_info['special']) / $product_info['price']) * 100, 0)
+                    );
+                }
+            }
+        }
+
+        if ($data['products']) {
+
+            //begin_devos_attribute_ext
+            $this->load->model('catalog/devos_attribute_ext');
+            $data['products'] = $this->model_catalog_devos_attribute_ext->daeCatalog($data['products']);
+            //end_devos_attribute_ext
+
+            return $this->load->view('extension/module/featured', $data);
+        }
+    }
 }
