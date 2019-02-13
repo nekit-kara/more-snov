@@ -9,6 +9,10 @@
 }
 
 @media all and (max-width: 1199px) {
+    .wrapper-wide {
+        margin-top: 65px;
+    }
+
     #header {
         display: none;
     }
@@ -37,6 +41,9 @@
         box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.1);
         z-index: 6;
         background-color: #fff;
+        height: 65px;
+        position: fixed;
+        top: 0;
     }
 
     #logo {
@@ -77,5 +84,10 @@
     .dropdown-menu {
         right: 0;
         left: inherit;
+    }
+
+    #mobileMenu {
+        z-index: 20;
+        /*display: none;*/
     }
 }

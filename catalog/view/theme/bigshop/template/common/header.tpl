@@ -62,14 +62,16 @@
     <?php } ?>
 
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/bigshop/stylesheet/new-style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/7.2.3/jquery.mmenu.all.css"/>
     <link rel="stylesheet" type="text/css" href="catalog/view/theme/bigshop/stylesheet/adaptive.css?<?= time() ?>"/>
-
 
     <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="catalog/view/theme/bigshop/js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="catalog/view/theme/bigshop/js/scripts.js"></script>
     <script type="text/javascript" src="catalog/view/theme/bigshop/js/common.min.js"></script>
     <script type="text/javascript" src="catalog/view/theme/bigshop/js/custom.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/7.2.3/jquery.mmenu.all.js"></script>
+    <script type="text/javascript" src="catalog/view/theme/bigshop/js/adaptive.js?<?= time() ?>"></script>
 
     <?php foreach ($scripts as $script) { ?>
         <script src="<?php echo $script; ?>" type="text/javascript"></script>
@@ -2173,9 +2175,9 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
                     <div class="row">
                         <div class="col-lg-2 col-xs-12 mobile-header">
 
-                            <div>
+                            <a href="#mobileMenu">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
-                            </div>
+                            </a>
 
 
                             <div id="logo">
@@ -2191,8 +2193,65 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
                         </div>
 
 
-                        <div class="col-lg-10 col-xs-12" style="display: none">
+                        <div class="mobile-menu-container col-lg-10 col-xs-12">
                             <div class="row">
+                                <nav id="mobileMenu">
+                                    <ul>
+                                        <?php if ($categories) { ?>
+
+                                                <?php foreach ($categories as $category) { ?>
+                                                    <li>
+                                                        <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                                                        <?php if ($category['children']) { ?>
+                                                                <?php for ($i = 0; $i < count($category['children']);) { ?>
+                                                                    <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+                                                                    <?php for (; $i < $j; $i++) { ?>
+                                                                        <?php if (isset($category['children'][$i])) { ?>
+                                                                            <li>
+                                                                                <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
+                                                                                <?php if ($category['children'][$i]['children_level2']) { ?>
+                                                                                    <ul>
+                                                                                        <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
+                                                                                            <li>
+                                                                                                <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
+                                                                                            </li>
+                                                                                        <?php } ?>
+                                                                                    </ul>
+                                                                                <?php } ?>
+                                                                            </li>
+                                                                        <?php } ?>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                        <?php }  ?>z
+                                                    </li>
+                                                <?php } ?>
+
+                                        <?php } ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-lg-7 col-xs-12 pull-right text-right">
+                                    <div class="b-user-menu">
+                                        <ul class="b-user-menu__list">
+                                            <?php if ($logged) { ?>
+                                                <li class="b-user-menu__item"><a href="<?php echo $logout; ?>"
+                                                                                 class="b-user-menu__link"><i
+                                                                class="icon icon_login"></i><?php echo $text_logout; ?>
+                                                    </a>
+                                                </li>
+                                            <? } else { ?>
+                                                <li class="b-user-menu__item"><a href="<?php echo $login; ?>"
+                                                                                 class="b-user-menu__link"><i
+                                                                class="icon icon_login"></i><?php echo $text_login; ?>
+                                                    </a>
+                                                </li>
+                                            <? } ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
                                 <div class="col-lg-5 col-xs-12">
                                     <div class="b-text-icon b-text-icon_mail">
                                         <div class="b-text-icon__image icon icon_mail"></div>
@@ -2219,431 +2278,6 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-xs-12">
-                                    <div class="b-text-icon b-text-icon_work">
-                                        <div class="b-text-icon__image icon icon_clock"></div>
-                                        <div class="b-text-icon__text">пн-пт: 9:00-20:00 <br>сб-вс: 10:00-19:00</div>
-                                    </div>
-                                    <div class="b-text-icon b-text-icon_work">
-                                        <div class="b-text-icon__image icon icon_tel"></div>
-                                        <div class="b-text-icon__text">+7 (812) 244-08-93</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7 col-xs-12 pull-right text-right">
-                                    <div class="b-user-menu">
-                                        <ul class="b-user-menu__list">
-                                            <?php if ($bigshop_wishlist_top_link == 1) { ?>
-                                                <li class="b-user-menu__item"><a href="<?php echo $wishlist; ?>"
-                                                                                 class="b-user-menu__link"
-                                                                                 id="wishlist-total"><i
-                                                                class="icon icon_like"></i><?php echo $text_wishlist; ?>
-                                                    </a></li>
-                                            <?php } ?>
-                                            </li>
-                                            <?php if ($logged) { ?>
-                                                <li class="b-user-menu__item"><a href="<?php echo $logout; ?>"
-                                                                                 class="b-user-menu__link"><i
-                                                                class="icon icon_login"></i><?php echo $text_logout; ?>
-                                                    </a>
-                                                </li>
-                                            <? } else { ?>
-                                                <li class="b-user-menu__item"><a href="<?php echo $login; ?>"
-                                                                                 class="b-user-menu__link"><i
-                                                                class="icon icon_login"></i><?php echo $text_login; ?>
-                                                    </a>
-                                                </li>
-                                            <? } ?>
-                                            <li class="b-user-menu__item">
-                                                <?php echo $cart; ?><!--<a href="#" class="b-user-menu__link"><i class="icon icon_cart"></i></a>--></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <nav id="menu"
-                                     class="navbar <?php if ($bigshop_main_menu_style == 2) { ?>full<?php } ?>">
-                                    <div class="navbar-header">
-                                        <span class="visible-xs visible-sm">
-                                            <?php echo $bigshop_mobile_menu_title[$lang]; ?>
-                                            <i class="fa fa-align-justify pull-right flip"></i>
-                                        </span>
-                                    </div>
-                                    <?php if ($bigshop_main_menu_style == 2) { ?>
-                                    <div class="b-main-menu">
-                                        <?php } ?>
-                                        <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                            <ul class="nav navbar-nav">
-                                                <?php if ($categories) { ?>
-                                                    <?php if ($bigshop_top_menu == 1) { ?>
-                                                        <?php foreach ($categories as $category) { ?>
-                                                            <li class="categories_defu dropdown"><a
-                                                                        class="dropdown-toggle"
-                                                                        href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-                                                                <?php if ($category['children']) { ?>
-                                                                    <div class="dropdown-menu">
-                                                                        <?php for ($i = 0; $i < count($category['children']);) { ?>
-                                                                            <ul>
-                                                                                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                                                                <?php for (; $i < $j; $i++) { ?>
-                                                                                    <?php if (isset($category['children'][$i])) { ?>
-                                                                                        <li>
-                                                                                            <?php if (count($category['children'][$i]['children_level2']) > 0) { ?>
-                                                                                                <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?>
-                                                                                                    <?php if ($direction == 'ltr') { ?>
-                                                                                                        <span class='fa fa-caret-right'></span>
-                                                                                                    <?php } else { ?>
-                                                                                                        <span class='fa fa-caret-left'></span>
-                                                                                                    <?php } ?>
-                                                                                                </a>
-                                                                                            <?php } else { ?>
-                                                                                                <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
-                                                                                            <?php } ?>
-                                                                                            <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                                                <div class="submenu">
-                                                                                                    <ul>
-                                                                                                        <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                                                            <li>
-                                                                                                                <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
-                                                                                                            </li>
-                                                                                                        <?php } ?>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            <?php } ?>
-                                                                                        </li>
-                                                                                    <?php } ?>
-                                                                                <?php } ?>
-                                                                            </ul>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </li>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                    <?php if ($bigshop_top_menu == 2) { ?>
-                                                        <li class="categories dropdown">
-                                                            <a><?php echo $bigshop_menu_categories_title[$lang]; ?></a>
-                                                            <div class="dropdown-menu">
-                                                                <?php foreach ($categories as $category) { ?>
-                                                                    <div class="column">
-                                                                        <?php
-                                                                        if (count($category['children']) > 0) {
-                                                                            ?>
-                                                                            <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?>
-                                                                                <?php if ($direction == 'ltr') { ?>
-                                                                                    <span class='fa fa-caret-right'></span>
-                                                                                <?php } else { ?>
-                                                                                    <span class='fa fa-caret-left'></span>
-                                                                                <?php } ?>
-                                                                            </a>
-                                                                        <?php } else { ?>
-                                                                            <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                        <?php if ($category['children']) { ?>
-                                                                            <div>
-                                                                                <?php for ($i = 0; $i < count($category['children']);) { ?>
-                                                                                    <ul>
-                                                                                        <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                                                                        <?php for (; $i < $j; $i++) { ?>
-                                                                                            <?php if (isset($category['children'][$i])) { ?>
-                                                                                                <li>
-                                                                                                    <?php
-                                                                                                    if (count($category['children'][$i]['children_level2']) > 0) {
-                                                                                                        ?>
-                                                                                                        <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?>
-                                                                                                            <?php if ($direction == 'ltr') { ?>
-                                                                                                                <span class='fa fa-caret-right'></span>
-                                                                                                            <?php } else { ?>
-                                                                                                                <span class='fa fa-caret-left'></span>
-                                                                                                            <?php } ?>
-                                                                                                        </a>
-                                                                                                    <?php } else { ?>
-                                                                                                        <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
-                                                                                                        <?php
-                                                                                                    }
-                                                                                                    ?>
-                                                                                                    <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                                                        <div class="submenu">
-                                                                                                            <ul>
-                                                                                                                <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                                                                    <li>
-                                                                                                                        <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
-                                                                                                                    </li>
-                                                                                                                <?php } ?>
-                                                                                                            </ul>
-                                                                                                        </div>
-                                                                                                    <?php } ?>
-                                                                                                </li>
-                                                                                            <?php } ?>
-                                                                                        <?php } ?>
-                                                                                    </ul>
-                                                                                <?php } ?>
-                                                                            </div>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                    <?php if ($bigshop_top_menu == 3) { ?>
-                                                        <li class="categories_hor dropdown">
-                                                            <a><?php echo $bigshop_menu_categories_title[$lang]; ?></a>
-                                                            <div class="dropdown-menu">
-                                                                <?php foreach ($categories as $category) { ?>
-                                                                    <div class="column col-lg-2 col-md-3"><a
-                                                                                href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-                                                                        <?php if ($category['children']) { ?>
-                                                                            <div>
-                                                                                <?php for ($i = 0; $i < count($category['children']);) { ?>
-                                                                                    <ul>
-                                                                                        <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                                                                        <?php for (; $i < $j; $i++) { ?>
-                                                                                            <?php if (isset($category['children'][$i])) { ?>
-                                                                                                <li>
-                                                                                                    <?php
-                                                                                                    if (count($category['children'][$i]['children_level2']) > 0) {
-                                                                                                        ?>
-                                                                                                        <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?>
-                                                                                                            <?php if ($direction == 'ltr') { ?>
-                                                                                                                <span class='fa fa-caret-right'></span>
-                                                                                                            <?php } else { ?>
-                                                                                                                <span class='fa fa-caret-left'></span>
-                                                                                                            <?php } ?>
-                                                                                                        </a>
-                                                                                                    <?php } else { ?>
-                                                                                                        <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
-                                                                                                        <?php
-                                                                                                    }
-                                                                                                    ?>
-                                                                                                    <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                                                        <div class="submenu">
-                                                                                                            <ul>
-                                                                                                                <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                                                                    <li>
-                                                                                                                        <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
-                                                                                                                    </li>
-                                                                                                                <?php } ?>
-                                                                                                            </ul>
-                                                                                                        </div>
-                                                                                                    <?php } ?>
-                                                                                                </li>
-                                                                                            <?php } ?>
-                                                                                        <?php } ?>
-                                                                                    </ul>
-                                                                                <?php } ?>
-                                                                            </div>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                    <?php if ($bigshop_top_menu == 4) { ?>
-                                                        <?php foreach ($categories as $category) { ?>
-                                                            <li class="categories_hor dropdown"><a
-                                                                        class="categories__parent-link"
-                                                                        href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-                                                                <?php if ($category['children']) { ?>
-                                                                    <div class="dropdown-menu">
-                                                                        <?php for ($i = 0; $i < count($category['children']);) { ?>
-                                                                            <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                                                            <?php for (; $i < $j; $i++) { ?>
-                                                                                <?php if (isset($category['children'][$i])) { ?>
-                                                                                    <div class="column col-lg-2 col-md-3 b-main-menu__parent">
-                                                                                        <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
-                                                                                        <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                                            <div>
-                                                                                                <ul class="b-main-menu__children">
-                                                                                                    <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                                                        <li>
-                                                                                                            <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
-                                                                                                        </li>
-                                                                                                    <?php } ?>
-                                                                                                </ul>
-                                                                                            </div>
-                                                                                        <?php } ?>
-                                                                                    </div>
-                                                                                <?php } ?>
-                                                                            <?php } ?>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </li>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_menu_brands == 1) { ?>
-                                                <li class="menu_brands <?php if ($bigshop_brands_display_style == 1) { ?>name<?php } ?> dropdown">
-                                                    <a href="<?php echo $manufacturer; ?>"><?php echo $bigshop_menu_brands_title[$lang]; ?></a>
-                                                    <?php if ($bigshop_brands_display_style == 1) { ?>
-                                                        <div class="dropdown-menu">
-                                                            <?php if ($manufacturers) { ?>
-                                                                <ul>
-                                                                    <?php $counter = 0;
-                                                                    foreach ($manufacturers as $manufacturer) { ?>
-                                                                        <li>
-                                                                            <a href="<?php echo $manufacturer['href']; ?>"><?php echo $manufacturer['name']; ?></a>
-                                                                        </li>
-                                                                        <?php $counter++;
-                                                                    } ?>
-                                                                </ul>
-                                                            <?php } ?>
-                                                        </div>
-                                                    <?php } ?>
-                                                    <?php if ($bigshop_brands_display_style == 2) { ?>
-                                                        <div class="dropdown-menu">
-                                                            <?php if ($manufacturers) { ?>
-                                                                <?php $counter = 0;
-                                                                foreach ($manufacturers as $manufacturer) { ?>
-                                                                    <div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"><a
-                                                                                href="<?php echo $manufacturer['href']; ?>"><img
-                                                                                    src="<?php echo $manufacturer['image']; ?>"
-                                                                                    title="<?php echo $manufacturer['name']; ?>"
-                                                                                    alt="<?php echo $manufacturer['name']; ?>"/></a>
-                                                                    </div>
-                                                                    <?php $counter++;
-                                                                } ?>
-                                                            <?php } ?>
-                                                        </div>
-                                                    <?php } ?>
-                                                    <?php if ($bigshop_brands_display_style == 3) { ?>
-                                                        <div class="dropdown-menu">
-                                                            <?php if ($manufacturers) { ?>
-                                                                <?php $counter = 0;
-                                                                foreach ($manufacturers as $manufacturer) { ?>
-                                                                    <div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"><a
-                                                                                href="<?php echo $manufacturer['href']; ?>"><img
-                                                                                    src="<?php echo $manufacturer['image']; ?>"
-                                                                                    title="<?php echo $manufacturer['name']; ?>"
-                                                                                    alt="<?php echo $manufacturer['name']; ?>"/></a>
-                                                                        <a href="<?php echo $manufacturer['href']; ?>"><?php echo $manufacturer['name']; ?></a>
-                                                                    </div>
-                                                                    <?php $counter++;
-                                                                } ?>
-                                                            <?php } ?>
-                                                        </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_link1 == 1) {
-                                                    if ((isset($bigshop_custom_link1_title[$lang]) && $bigshop_custom_link1_title[$lang] != '')) { ?>
-                                                        <li class="custom-link"><a
-                                                                    href="<?php echo $bigshop_custom_link1_url; ?>"
-                                                                    target="<?php echo $bigshop_target_link1; ?>"> <?php echo $bigshop_custom_link1_title[$lang]; ?></a>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_link2 == 1) {
-                                                    $bigshop_custom_link2_title = $bigshop_custom_link2_title;
-
-                                                    if ((isset($bigshop_custom_link2_title[$lang]) && $bigshop_custom_link2_title[$lang] != '')) { ?>
-                                                        <li class="custom-link"><a
-                                                                    href="<?php echo $bigshop_custom_link2_url; ?>"
-                                                                    target="<?php echo $bigshop_target_link2; ?>"> <?php echo $bigshop_custom_link2_title[$lang]; ?></a>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_link3 == 1) {
-                                                    $bigshop_custom_link3_title = $bigshop_custom_link3_title;
-
-                                                    if ((isset($bigshop_custom_link3_title[$lang]) && $bigshop_custom_link3_title[$lang] != '')) { ?>
-                                                        <li class="custom-link"><a
-                                                                    href="<?php echo $bigshop_custom_link3_url; ?>"
-                                                                    target="<?php echo $bigshop_target_link3; ?>"> <?php echo $bigshop_custom_link3_title[$lang]; ?></a>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_link4 == 1) {
-                                                    $bigshop_custom_link4_title = $bigshop_custom_link4_title;
-
-                                                    if ((isset($bigshop_custom_link4_title[$lang]) && $bigshop_custom_link4_title[$lang] != '')) { ?>
-                                                        <li class="custom-link"><a
-                                                                    href="<?php echo $bigshop_custom_link4_url; ?>"
-                                                                    target="<?php echo $bigshop_target_link4; ?>"> <?php echo $bigshop_custom_link4_title[$lang]; ?></a>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_link5 == 1) {
-                                                    $bigshop_custom_link5_title = $bigshop_custom_link5_title;
-                                                    if ((isset($bigshop_custom_link5_title[$lang]) && $bigshop_custom_link5_title[$lang] != '')) { ?>
-                                                        <li class="custom-link"><a
-                                                                    href="<?php echo $bigshop_custom_link5_url; ?>"
-                                                                    target="<?php echo $bigshop_target_link5; ?>"> <?php echo $bigshop_custom_link5_title[$lang]; ?></a>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_block_status == 1) {
-                                                    if (isset($bigshop_custom_block_title[$lang]) && $bigshop_custom_block_title[$lang] != '') { ?>
-                                                        <li class="dropdown wrap_custom_block hidden-sm hidden-xs">
-                                                            <a><?php echo $bigshop_custom_block_title[$lang]; ?></a>
-                                                            <div class="dropdown-menu custom_block">
-                                                                <ul>
-                                                                    <?php if (isset($bigshop_custom_block_content[$lang]['description']) && $bigshop_custom_block_content[$lang]['description'] != "") { ?>
-                                                                        <li><?php echo html_entity_decode($bigshop_custom_block_content[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?></li>
-                                                                    <?php } ?>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_block2_status == 1) {
-                                                    if (isset($bigshop_custom_block2_title[$lang]) && $bigshop_custom_block2_title[$lang] != '') { ?>
-                                                        <li class="dropdown wrap_custom_block hidden-sm hidden-xs">
-                                                            <a><?php echo $bigshop_custom_block2_title[$lang]; ?></a>
-                                                            <div class="dropdown-menu custom_block">
-                                                                <ul>
-                                                                    <?php if (isset($bigshop_custom_block2_content[$lang]['description']) && $bigshop_custom_block2_content[$lang]['description'] != "") { ?>
-                                                                        <li><?php echo html_entity_decode($bigshop_custom_block2_content[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?></li>
-                                                                    <?php } ?>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_custom_block3_status == 1) {
-                                                    if (isset($bigshop_custom_block3_title[$lang]) && $bigshop_custom_block3_title[$lang] != '') { ?>
-                                                        <li class="dropdown wrap_custom_block hidden-sm hidden-xs">
-                                                            <a><?php echo $bigshop_custom_block3_title[$lang]; ?></a>
-                                                            <div class="dropdown-menu custom_block">
-                                                                <ul>
-                                                                    <?php if (isset($bigshop_custom_block3_content[$lang]['description']) && $bigshop_custom_block3_content[$lang]['description'] != "") { ?>
-                                                                        <li><?php echo html_entity_decode($bigshop_custom_block3_content[$lang]['description'], ENT_QUOTES, 'UTF-8'); ?></li>
-                                                                    <?php } ?>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_information_page == 1) {
-                                                    if ($informations) { ?>
-                                                        <li class="dropdown information-link">
-                                                            <a><?php echo $text_information; ?></a>
-                                                            <div class="dropdown-menu">
-                                                                <ul>
-                                                                    <?php foreach ($informations as $information) { ?>
-                                                                        <li>
-                                                                            <a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a>
-                                                                        </li>
-                                                                    <?php } ?>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($bigshop_contact_us == 1) { ?>
-                                                    <li class="contact-link"><a
-                                                                href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a>
-                                                    </li>
-                                                <?php } ?>
-                                            </ul>
-                                        </div>
-                                        <?php if ($bigshop_main_menu_style == 2) { ?>
-                                    </div>
-                                <?php } ?>
-                                </nav>
                             </div>
                         </div>
                     </div>
