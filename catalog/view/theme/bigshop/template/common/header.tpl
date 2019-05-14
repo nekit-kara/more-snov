@@ -1695,11 +1695,72 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
     <?php } ?>
 </head>
 <body class="<?php echo $class; ?>">
-<?php if ($bigshop_layout_style == 1) { ?>
-<section class="wrapper-box">
-    <?php } else { ?>
-    <section class="wrapper-wide">
+<nav id="mobileMenu" style="visibility: hidden">
+    <ul>
+        <?php if ($categories) { ?>
+            <?php foreach ($categories as $category) { ?>
+                <li>
+                    <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                    <?php if ($category['children']) { ?>
+                        <ul>
+                            <?php for ($i = 0; $i < count($category['children']);) { ?>
+                                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+                                <?php for (; $i < $j; $i++) { ?>
+                                    <?php if (isset($category['children'][$i])) { ?>
+                                        <li>
+                                            <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
+                                            <?php if ($category['children'][$i]['children_level2']) { ?>
+                                                <ul>
+                                                    <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
+                                                        <li>
+                                                            <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
+                                                        </li>
+                                                    <?php } ?>
+                                                </ul>
+                                            <?php } ?>
+                                        </li>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </ul>
+                    <?php }  ?>
+                </li>
+            <?php } ?>
+
         <?php } ?>
+    </ul>
+</nav>
+<?php if ($bigshop_layout_style == 1) { ?>
+<div id="page" class="wrapper-box">
+    <?php } else { ?>
+    <div id="page" class="wrapper-wide">
+        <?php } ?>
+
+        <div id="mobileHeader">
+            <header class="header-row">
+                <div class="container header-container">
+                    <div class="row">
+                        <div class="col-lg-2 col-xs-12 mobile-header">
+
+                            <a href="#mobileMenu">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </a>
+
+                            <div id="logo">
+                                <a href="/">
+                                    <img src="catalog/view/theme/bigshop/images/header/logo.png"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <?= $cart ?>
+
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
         <div id="header">
             <header class="header-row">
                 <div class="container header-container">
@@ -2168,120 +2229,4 @@ if(($bigshop_footer_second_2nd_separator_status ==2)) {
             </header>
         </div>
 
-
-        <div id="mobileHeader">
-            <header class="header-row">
-                <div class="container header-container">
-                    <div class="row">
-                        <div class="col-lg-2 col-xs-12 mobile-header">
-
-                            <a href="#mobileMenu">
-                                <i class="fa fa-bars" aria-hidden="true"></i>
-                            </a>
-
-
-                            <div id="logo">
-                                <a href="/">
-                                    <img src="catalog/view/theme/bigshop/images/header/logo.png"
-                                         alt="">
-                                </a>
-                            </div>
-
-
-                            <?= $cart ?>
-
-                        </div>
-
-
-                        <div class="mobile-menu-container col-lg-10 col-xs-12">
-                            <div class="row">
-                                <nav id="mobileMenu">
-                                    <ul>
-                                        <?php if ($categories) { ?>
-
-                                                <?php foreach ($categories as $category) { ?>
-                                                    <li>
-                                                        <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-                                                        <?php if ($category['children']) { ?>
-                                                                <?php for ($i = 0; $i < count($category['children']);) { ?>
-                                                                    <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                                                                    <?php for (; $i < $j; $i++) { ?>
-                                                                        <?php if (isset($category['children'][$i])) { ?>
-                                                                            <li>
-                                                                                <a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a>
-                                                                                <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                                    <ul>
-                                                                                        <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                                            <li>
-                                                                                                <a href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?> </a>
-                                                                                            </li>
-                                                                                        <?php } ?>
-                                                                                    </ul>
-                                                                                <?php } ?>
-                                                                            </li>
-                                                                        <?php } ?>
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                        <?php }  ?>z
-                                                    </li>
-                                                <?php } ?>
-
-                                        <?php } ?>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="row" style="display:none;">
-                                <div class="col-lg-7 col-xs-12 pull-right text-right">
-                                    <div class="b-user-menu">
-                                        <ul class="b-user-menu__list">
-                                            <?php if ($logged) { ?>
-                                                <li class="b-user-menu__item"><a href="<?php echo $logout; ?>"
-                                                                                 class="b-user-menu__link"><i
-                                                                class="icon icon_login"></i><?php echo $text_logout; ?>
-                                                    </a>
-                                                </li>
-                                            <? } else { ?>
-                                                <li class="b-user-menu__item"><a href="<?php echo $login; ?>"
-                                                                                 class="b-user-menu__link"><i
-                                                                class="icon icon_login"></i><?php echo $text_login; ?>
-                                                    </a>
-                                                </li>
-                                            <? } ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="display:none;">
-                                <div class="col-lg-5 col-xs-12">
-                                    <div class="b-text-icon b-text-icon_mail">
-                                        <div class="b-text-icon__image icon icon_mail"></div>
-                                        <div class="b-text-icon__text"><a href="mailto:info@more-snov.ru">INFO@MORE-SNOV.RU</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7 col-xs-12 pull-right">
-                                    <div class="b-top-menu">
-                                        <ul class="b-top-menu__list">
-                                            <li class="b-top-menu__item"><a href="/o-nas" class="b-top-menu__link">О
-                                                    нас</a></li>
-                                            <li class="b-top-menu__item"><a href="/oplata-i-dostavka"
-                                                                            class="b-top-menu__link">Доставка и
-                                                    оплата</a></li>
-                                            <li class="b-top-menu__item"><a href="/vozvrat" class="b-top-menu__link">Возврат</a>
-                                            </li>
-                                            <li class="b-top-menu__item"><a href="#" class="b-top-menu__link">Вопрос и
-                                                    ответ</a></li>
-                                            <li class="b-top-menu__item"><a href="#"
-                                                                            class="b-top-menu__link">Полезное</a></li>
-                                            <li class="b-top-menu__item"><a href="/contact" class="b-top-menu__link">Контакты</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
  

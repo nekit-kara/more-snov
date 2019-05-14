@@ -18,13 +18,35 @@ const adaptive = {
         const _this = this;
 
         $(_this.mobileMenu).mmenu({
-            "slidingSubmenus": false,
-            "counters": true
+            "slidingSubmenus": true,
+            "extensions": [
+                "pagedim-black"
+            ],
+            "counters": true,
+            "navbar": {
+                title: false
+            },
+            "navbars": [
+                {
+                    "position": "bottom",
+                    "content": [
+                        "<a class='fa fa-envelope' href='#/'></a>",
+                        "<a class='fa fa-twitter' href='#/'></a>",
+                        "<a class='fa fa-facebook' href='#/'></a>"
+                    ]
+                }
+            ],
+            hooks: {
+                "openPanel:start": function( $panel ) {
+                    $(_this.mobileMenu).css('visibility', 'visible');
+                }
+            }
         });
 
         const api = $(_this.mobileMenu).data('mmenu');
 
-        api.bind('openPanel:start', function (e) {
+        api.bind('openPanel:before', function (e) {
+            console.log(e);
         });
     },
 };

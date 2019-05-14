@@ -39,7 +39,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
         box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.1);
-        z-index: 6;
+        z-index: 2;
         background-color: #fff;
         height: 65px;
         position: fixed;
@@ -55,8 +55,13 @@
     }
 
     .slider-wrapper {
+        z-index: 1;
         margin-left: -15px;
         margin-right: -15px;
+    }
+
+    .mm-menu_opened ~ .mm-page #mobileHeader .mobile-header {
+        top: -65px;
     }
 
     .cart {
